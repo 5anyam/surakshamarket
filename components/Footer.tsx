@@ -1,71 +1,70 @@
-// components/Footer.tsx
 import Link from "next/link";
-import { Phone, Mail, MapPin, Instagram, Youtube, Facebook } from "lucide-react";
+import { Phone, Mail, MapPin, Instagram, Youtube, Facebook, ShieldCheck } from "lucide-react";
 
 const shopCategories = [
-  { name: "Home Decor",                     to: "/category/home-decor" },
-  { name: "Fashion",                         to: "/category/fashion" },
-  { name: "Home & Kitchen",                  to: "/category/home-kitchen" },
-  { name: "Mobile & Electronics",            to: "/category/mobile-electronics-accessories" },
-  { name: "Bike & Car Accessories",          to: "/category/bike-car-accessories" },
-  { name: "Sports & Outdoors",               to: "/category/sports-outdoors" },
-  { name: "Toys & Games",                    to: "/category/toys-games" },
-  { name: "Office Products",                 to: "/category/office-products" },
+  { name: "CCTV Cameras",      to: "/category/cctv-cameras" },
+  { name: "Video Door Phones", to: "/category/video-door-phones" },
+  { name: "Alarms & Sensors",  to: "/category/alarms-sensors" },
+  { name: "Access Control",    to: "/category/access-control" },
+  { name: "DVR/NVR Systems",   to: "/category/dvr-nvr-systems" },
+  { name: "Smart Locks",       to: "/category/smart-locks" },
+  { name: "Outdoor Cameras",   to: "/category/outdoor-cameras" },
+  { name: "GPS Trackers",      to: "/category/gps-trackers" },
 ];
 
 const helpLinks = [
-  { name: "My Account",      to: "/account" },
-  { name: "Track My Order",  to: "/track-order" },
-  { name: "Returns & Refunds", to: "/returns" },
-  { name: "Shipping Policy", to: "/shipping" },
-  { name: "Privacy Policy",  to: "/privacy" },
-  { name: "Terms of Service", to: "/terms" },
-  { name: "Contact Us",      to: "/contact" },
+  { name: "My Account",         to: "/account" },
+  { name: "Track My Order",     to: "/track-order" },
+  { name: "Returns & Refunds",  to: "/returns-and-refunds-policy" },
+  { name: "Shipping Policy",    to: "/shipping-policy" },
+  { name: "Privacy Policy",     to: "/privacy-policy" },
+  { name: "Terms & Conditions", to: "/terms-and-conditions" },
+  { name: "Contact Us",         to: "/contact" },
 ];
 
 export default function Footer() {
   return (
-    <footer className="bg-[#2A2825] text-[#A3A09B] font-sans">
+    <footer className="bg-[#0a0a0a] text-gray-500 border-t border-[#1a1a1a]">
 
-      {/* Main Footer Grid */}
+      {/* Main Grid */}
       <div className="max-w-7xl mx-auto px-4 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
-        {/* Brand Column */}
+        {/* Brand */}
         <div className="flex flex-col gap-5">
-          <Link href="/">
-            <img src="/logo.jpg" alt="Tap2Buy" className="h-10 w-auto" />
+          <Link href="/" className="flex items-center gap-2">
+            <ShieldCheck className="w-6 h-6 text-[#2563eb]" />
+            <span className="font-sora font-extrabold text-xl tracking-tight text-white">
+              Suraksha<span className="text-[#2563eb]">Market</span>
+            </span>
           </Link>
-          <p className="text-[12px] leading-relaxed tracking-wide text-[#6B665E]">
-            Your one-stop destination for quality products across every category — delivered fast, priced right.
+          <p className="text-[12px] leading-relaxed text-[#444]">
+            Delhi NCR&apos;s trusted destination for professional surveillance &amp; security solutions — CCTV cameras, video door phones, alarms, and more.
           </p>
           <div className="flex gap-4 mt-1">
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
-               className="text-[#6B665E] hover:text-[#B86B52] transition-colors">
+               className="text-[#333] hover:text-[#2563eb] transition-colors">
               <Instagram className="w-4 h-4" />
             </a>
             <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"
-               className="text-[#6B665E] hover:text-[#B86B52] transition-colors">
+               className="text-[#333] hover:text-[#2563eb] transition-colors">
               <Youtube className="w-4 h-4" />
             </a>
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"
-               className="text-[#6B665E] hover:text-[#B86B52] transition-colors">
+               className="text-[#333] hover:text-[#2563eb] transition-colors">
               <Facebook className="w-4 h-4" />
             </a>
           </div>
         </div>
 
-        {/* Shop by Category */}
+        {/* Product Categories */}
         <div>
           <h4 className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white mb-5">
-            Shop by Category
+            Product Categories
           </h4>
           <ul className="flex flex-col gap-3">
             {shopCategories.map((cat) => (
               <li key={cat.to}>
-                <Link
-                  href={cat.to}
-                  className="text-[12px] tracking-wide text-[#6B665E] hover:text-[#B86B52] transition-colors"
-                >
+                <Link href={cat.to} className="text-[12px] text-[#444] hover:text-[#2563eb] transition-colors">
                   {cat.name}
                 </Link>
               </li>
@@ -81,10 +80,7 @@ export default function Footer() {
           <ul className="flex flex-col gap-3">
             {helpLinks.map((link) => (
               <li key={link.to}>
-                <Link
-                  href={link.to}
-                  className="text-[12px] tracking-wide text-[#6B665E] hover:text-[#B86B52] transition-colors"
-                >
+                <Link href={link.to} className="text-[12px] text-[#444] hover:text-[#2563eb] transition-colors">
                   {link.name}
                 </Link>
               </li>
@@ -100,39 +96,38 @@ export default function Footer() {
           <ul className="flex flex-col gap-4">
             <li>
               <a href="tel:+919911636888"
-                 className="flex items-start gap-3 text-[12px] tracking-wide text-[#6B665E] hover:text-[#B86B52] transition-colors">
+                 className="flex items-start gap-3 text-[12px] text-[#444] hover:text-[#2563eb] transition-colors">
                 <Phone className="w-4 h-4 mt-0.5 shrink-0" />
                 +91 99116 36888
               </a>
             </li>
             <li>
-              <a href="mailto:support@tap2buy.in"
-                 className="flex items-start gap-3 text-[12px] tracking-wide text-[#6B665E] hover:text-[#B86B52] transition-colors">
+              <a href="mailto:support@surakhshamarket.com"
+                 className="flex items-start gap-3 text-[12px] text-[#444] hover:text-[#2563eb] transition-colors">
                 <Mail className="w-4 h-4 mt-0.5 shrink-0" />
-                support@tap2buy.in
+                support@surakhshamarket.com
               </a>
             </li>
-            <li className="flex items-start gap-3 text-[12px] tracking-wide text-[#6B665E]">
+            <li className="flex items-start gap-3 text-[12px] text-[#444]">
               <MapPin className="w-4 h-4 mt-0.5 shrink-0" />
-              India
+              Delhi NCR, India
             </li>
           </ul>
         </div>
 
       </div>
 
-      {/* Divider */}
-      <div className="border-t border-[#3A3835]" />
+      <div className="border-t border-[#141414]" />
 
       {/* Bottom Bar */}
       <div className="max-w-7xl mx-auto px-4 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-        <p className="text-[11px] tracking-widest text-[#6B665E]">
-          © {new Date().getFullYear()} Tap2Buy. All rights reserved.
+        <p className="text-[11px] tracking-widest text-[#333]">
+          © {new Date().getFullYear()} Suraksha Market. All rights reserved. Serving Delhi NCR.
         </p>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           {["Visa", "Mastercard", "UPI", "Razorpay"].map((method) => (
             <span key={method}
-              className="text-[10px] uppercase tracking-widest text-[#4A4845] border border-[#3A3835] px-2 py-1">
+              className="text-[10px] uppercase tracking-widest text-[#333] border border-[#1a1a1a] px-2 py-1">
               {method}
             </span>
           ))}

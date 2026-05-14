@@ -65,9 +65,9 @@ const Dashboard = () => {
           throw new Error('Invalid user ID. Please login again.');
         }
 
-        const apiUrl = `https://cms.caishenunited.com/wp-json/wc/v3/orders`;
+        const apiUrl = `https://cms.surakshamarket.com/wp-json/wc/v3/orders`;
         const auth = btoa(
-          `ck_9a1fbb9afa025bbe8591eb4322c3e1c68e1b1002:cs_42d947c7a1acb0c0ca89ca17b35629a530097e44`
+          `ck_75b4bd0aa015823ec4c01e6f8ac1be88bcf68128:cs_8763147408fd023d73d196e1864cf233ee100065`
         );
 
         console.log('📡 API URL:', `${apiUrl}?customer=${user.id}`);

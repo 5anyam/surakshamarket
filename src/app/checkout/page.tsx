@@ -16,9 +16,9 @@ import {
 
 // ── CONFIG ──────────────────────────────────────────────────────────────────
 const WOOCOMMERCE_CONFIG = {
-  BASE_URL: "https://cms.tap2buy.in",
-  CONSUMER_KEY: "ck_c6018ad0c7ea07ca111bbf28c539e73d3b3cf0ac",
-  CONSUMER_SECRET: "cs_aab574723e9230920cfa28e6244f2c35da5abc58",
+  BASE_URL: "https://cms.surakshamarket.com",
+  CONSUMER_KEY: "ck_75b4bd0aa015823ec4c01e6f8ac1be88bcf68128",
+  CONSUMER_SECRET: "cs_8763147408fd023d73d196e1864cf233ee100065",
 };
 
 const RAZORPAY_CONFIG = {

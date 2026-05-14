@@ -1,81 +1,97 @@
 @import "tailwindcss";
 @import 'slick-carousel/slick/slick.css';
 @import 'slick-carousel/slick/slick-theme.css';
-@import '@fontsource/fredoka';          /* Normal weight */
-@import '@fontsource/fredoka/600.css';  /* Bold weight */
-
-
-
+@import '@fontsource/fredoka';
+@import '@fontsource/fredoka/600.css';
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0f0f0f;
+  --foreground: #f0f0f0;
+  --accent: #e63e3e;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: 'Inter', sans-serif;
+  --font-sora: 'Sora', sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: #0f0f0f;
 }
 
 body {
   color: var(--foreground);
+  background: var(--background);
   font-family: 'Inter', sans-serif;
 }
-@keyframes marquee {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
+
+/* Hide scrollbar but keep scroll functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
+/* Infinite left-scrolling marquee (content duplicated 2x) */
+@keyframes marquee-loop {
+  0%   { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee-loop {
+  animation: marquee-loop 30s linear infinite;
+}
+
+/* Legacy marquee (used in older components) */
+@keyframes marquee {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
 .animate-marquee {
   animation: marquee 35s linear infinite;
 }
 
+/* Fade-in-up used in homepage product cards */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Hero slide fade */
+@keyframes heroFade {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-hero-fade {
+  animation: heroFade 0.7s ease-out forwards;
+}
+
+/* Blob animations (keep for AnimatedBackground) */
 @keyframes blob1 {
-  0%, 100% {
-    transform: translate(0px, 0px) scale(1);
-  }
-  50% {
-    transform: translate(20px, -30px) scale(1.1);
-  }
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  50%       { transform: translate(20px, -30px) scale(1.1); }
 }
-
 @keyframes blob2 {
-  0%, 100% {
-    transform: translate(0px, 0px) scale(1);
-  }
-  50% {
-    transform: translate(-25px, 20px) scale(1.05);
-  }
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  50%       { transform: translate(-25px, 20px) scale(1.05); }
 }
-
 @keyframes blob3 {
-  0%, 100% {
-    transform: translate(0px, 0px) scale(1);
-  }
-  50% {
-    transform: translate(15px, 10px) scale(1.1);
-  }
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  50%       { transform: translate(15px, 10px) scale(1.1); }
 }
+.animate-blob1 { animation: blob1 10s ease-in-out infinite; }
+.animate-blob2 { animation: blob2 12s ease-in-out infinite; }
+.animate-blob3 { animation: blob3 14s ease-in-out infinite; }
 
-.animate-blob1 {
-  animation: blob1 10s ease-in-out infinite;
+/* Dark scrollbar for the whole page */
+* {
+  scrollbar-color: #333 #111;
+  scrollbar-width: thin;
 }
-.animate-blob2 {
-  animation: blob2 12s ease-in-out infinite;
-}
-.animate-blob3 {
-  animation: blob3 14s ease-in-out infinite;
-}
+*::-webkit-scrollbar { width: 6px; height: 6px; }
+*::-webkit-scrollbar-track { background: #111; }
+*::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+*::-webkit-scrollbar-thumb:hover { background: #e63e3e; }

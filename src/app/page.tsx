@@ -4,8 +4,9 @@ import { fetchProducts } from "../../lib/woocommerceApi";
 import ProductCard from "../../components/ProductCard";
 import Link from "next/link";
 import {
-  ChevronRight, Shield, Sparkles, Package, Award, Star,
-  Truck, RotateCcw, HeadphonesIcon, Heart, Zap, Tag,
+  ChevronRight, Shield, Package, Award, Star,
+  Truck, RotateCcw, HeadphonesIcon, Heart, Zap, Tag, ChevronLeft,
+  Camera,
 } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 
@@ -20,90 +21,112 @@ interface Product {
 }
 
 const ProductSkeleton: React.FC = () => (
-  <div className="bg-white overflow-hidden border border-[#E8E6E1] animate-pulse">
-    <div className="aspect-square bg-[#F0EFEA]" />
-    <div className="p-5 space-y-3">
-      <div className="h-4 bg-[#F0EFEA] rounded-sm w-3/4" />
-      <div className="h-3 bg-[#F0EFEA] w-1/2 rounded-sm" />
-      <div className="h-6 bg-[#F0EFEA] w-1/3 rounded-sm mt-4" />
+  <div className="flex-shrink-0 w-56 md:w-64 bg-[#161616] border border-[#252525] animate-pulse">
+    <div className="aspect-square bg-[#1a1a1a]" />
+    <div className="p-4 space-y-2.5">
+      <div className="h-3 bg-[#1e1e1e] rounded w-3/4" />
+      <div className="h-3 bg-[#1e1e1e] rounded w-1/2" />
+      <div className="h-5 bg-[#1e1e1e] rounded w-1/3 mt-3" />
     </div>
   </div>
 );
 
-// ── DATA ──────────────────────────────────────────────────────────────────────
-
-const CATEGORIES = [
-  { name: 'Home Decor',        slug: 'home-decor',                     emoji: '🏺', bg: 'bg-[#F2EFE9]', border: 'border-transparent hover:border-[#B86B52]' },
-  { name: 'Fashion',           slug: 'fashion',                        emoji: '👗', bg: 'bg-[#EAECE9]', border: 'border-transparent hover:border-[#8A9A86]' },
-  { name: 'Home & Kitchen',    slug: 'home-kitchen',                   emoji: '🍳', bg: 'bg-[#EFEAE6]', border: 'border-transparent hover:border-[#A88C7D]' },
-  { name: 'Electronics',       slug: 'mobile-electronics-accessories', emoji: '📱', bg: 'bg-[#F0EFEA]', border: 'border-transparent hover:border-[#2A2825]' },
-  { name: 'Bike & Car',        slug: 'bike-car-accessories',           emoji: '🚗', bg: 'bg-[#F2EFE9]', border: 'border-transparent hover:border-[#B86B52]' },
-  { name: 'Sports & Outdoors', slug: 'sports-outdoors',                emoji: '⚽', bg: 'bg-[#EAECE9]', border: 'border-transparent hover:border-[#8A9A86]' },
-  { name: 'Toys & Games',      slug: 'toys-games',                     emoji: '🎮', bg: 'bg-[#EFEAE6]', border: 'border-transparent hover:border-[#A88C7D]' },
-  { name: 'Office Products',   slug: 'office-products',                emoji: '💼', bg: 'bg-[#F0EFEA]', border: 'border-transparent hover:border-[#2A2825]' },
+const HERO_SLIDES = [
+  {
+    bg: "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2074&auto=format&fit=crop",
+    label: "Professional Security Solutions",
+    title: "Secure Your\nHome &\nBusiness.",
+    subtitle: "Delhi NCR's trusted source for CCTV, video door phones, alarms & complete surveillance systems.",
+    cta: { text: "Shop Now", href: "/collections" },
+    secondary: { text: "View Deals", href: "/sale" },
+  },
+  {
+    bg: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2070&auto=format&fit=crop",
+    label: "Smart Surveillance",
+    title: "See Everything.\nMiss Nothing.",
+    subtitle: "HD CCTV cameras, DVR/NVR systems and smart door phones — delivered across Delhi NCR.",
+    cta: { text: "Shop CCTV", href: "/category/cctv-cameras" },
+    secondary: { text: "Video Door Phones", href: "/category/video-door-phones" },
+  },
+  {
+    bg: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=2070&auto=format&fit=crop",
+    label: "Access Control & Smart Locks",
+    title: "Control\nEvery\nEntry Point.",
+    subtitle: "From smart locks to biometric access control — protect what matters most with cutting-edge technology.",
+    cta: { text: "Shop Access Control", href: "/category/access-control" },
+    secondary: { text: "Smart Locks", href: "/category/smart-locks" },
+  },
 ];
 
-const HERO_CARDS = [
-  { emoji: '🏺', name: 'Home Decor',     href: '/category/home-decor',                    bg: 'bg-white',     border: true,  accent: false },
-  { emoji: '👗', name: 'Fashion',        href: '/category/fashion',                        bg: 'bg-[#EAECE9]', border: false, accent: false },
-  { emoji: '📱', name: 'Electronics',    href: '/category/mobile-electronics-accessories', bg: 'bg-[#EFEAE6]', border: false, accent: false },
-  { emoji: '⚡', name: 'Sale — 70% Off', href: '/sale',                                    bg: 'bg-[#B86B52]', border: false, accent: true  },
+const CATEGORIES = [
+  { name: 'CCTV Cameras',      slug: 'cctv-cameras',        emoji: '📷' },
+  { name: 'Video Door Phones', slug: 'video-door-phones',   emoji: '🚪' },
+  { name: 'Alarms & Sensors',  slug: 'alarms-sensors',      emoji: '🚨' },
+  { name: 'Access Control',    slug: 'access-control',      emoji: '🔐' },
+  { name: 'DVR/NVR Systems',   slug: 'dvr-nvr-systems',     emoji: '🖥️' },
+  { name: 'Smart Locks',       slug: 'smart-locks',         emoji: '🔒' },
+  { name: 'Outdoor Cameras',   slug: 'outdoor-cameras',     emoji: '🌐' },
+  { name: 'GPS Trackers',      slug: 'gps-trackers',        emoji: '📡' },
 ];
 
 const SHOWCASE_CATEGORIES = [
-  { name: 'Home Decor',        slug: 'home-decor',                     emoji: '🏺' },
-  { name: 'Fashion',           slug: 'fashion',                        emoji: '👗' },
-  { name: 'Home & Kitchen',    slug: 'home-kitchen',                   emoji: '🍳' },
-  { name: 'Electronics',       slug: 'mobile-electronics-accessories', emoji: '📱' },
-  { name: 'Bike & Car',        slug: 'bike-car-accessories',           emoji: '🚗' },
-  { name: 'Sports & Outdoors', slug: 'sports-outdoors',                emoji: '⚽' },
-  { name: 'Toys & Games',      slug: 'toys-games',                     emoji: '🎮' },
-  { name: 'Office Products',   slug: 'office-products',                emoji: '💼' },
+  { name: 'CCTV Cameras',      slug: 'cctv-cameras',        emoji: '📷' },
+  { name: 'Video Door Phones', slug: 'video-door-phones',   emoji: '🚪' },
+  { name: 'Alarms & Sensors',  slug: 'alarms-sensors',      emoji: '🚨' },
+  { name: 'Access Control',    slug: 'access-control',      emoji: '🔐' },
+  { name: 'DVR/NVR Systems',   slug: 'dvr-nvr-systems',     emoji: '🖥️' },
+  { name: 'Smart Locks',       slug: 'smart-locks',         emoji: '🔒' },
+  { name: 'Outdoor Cameras',   slug: 'outdoor-cameras',     emoji: '🌐' },
+  { name: 'GPS Trackers',      slug: 'gps-trackers',        emoji: '📡' },
 ];
 
 const TESTIMONIALS = [
   {
-    name: 'Priya S.', location: 'Delhi', rating: 5,
-    text: 'Ordered a phone stand and desk organiser — super fast delivery and quality is exactly as shown. Will order again!',
-    tag: 'Office Products',
+    name: 'Amit S.', location: 'Noida', rating: 5,
+    text: 'Got a 4-camera CCTV system from Suraksha Market. Excellent quality and super fast delivery within Delhi NCR. Highly recommend!',
+    tag: 'CCTV Cameras',
   },
   {
-    name: 'Rahul M.', location: 'Mumbai', rating: 5,
-    text: 'Got a car phone holder and bike accessories. Fits perfectly and the price is unbeatable compared to other sites.',
-    tag: 'Bike & Car',
+    name: 'Priya M.', location: 'Gurgaon', rating: 5,
+    text: 'The Godrej video door phone I ordered is perfect. Crystal clear 7-inch display and two-way audio. Very happy with the purchase.',
+    tag: 'Video Door Phones',
   },
   {
-    name: 'Ananya K.', location: 'Bangalore', rating: 5,
-    text: 'The fashion section is amazing — got a dress that fits perfectly. Packaging was careful and delivery was on time.',
-    tag: 'Fashion',
+    name: 'Rajesh K.', location: 'Delhi', rating: 5,
+    text: 'Best prices for smart locks in Delhi NCR. The biometric lock for my office is working flawlessly. Great after-sales support too.',
+    tag: 'Smart Locks',
   },
 ];
 
 const WHY_US = [
-  { icon: Zap,      title: 'Wide Selection',         desc: '8 categories, 300+ products — everything you need in one place.',          bg: 'bg-[#F2EFE9]', color: 'text-[#B86B52]' },
-  { icon: Sparkles, title: 'Quality Assured',         desc: 'Every product is reviewed for quality before it goes live on the store.',   bg: 'bg-[#EFEAE6]', color: 'text-[#A88C7D]' },
-  { icon: Shield,   title: 'Safe & Secure Delivery',  desc: 'Items are packed with care to ensure they reach you in perfect condition.',  bg: 'bg-[#EAECE9]', color: 'text-[#8A9A86]' },
+  { icon: Camera,  title: 'Genuine Products',       desc: 'All surveillance products are sourced from authorised distributors — 100% authentic brands.' },
+  { icon: Shield,  title: 'Delhi NCR Coverage',      desc: 'We serve all of Delhi, Noida, Gurgaon, Faridabad and nearby areas with fast delivery.' },
+  { icon: Zap,     title: 'Expert Support',           desc: 'Our security specialists help you choose the right system for your home or business.' },
 ];
 
 const TRUST_STRIP = [
-  { icon: Truck,          title: 'Free Shipping',  sub: 'On orders above ₹499'      },
-  { icon: RotateCcw,      title: 'Easy Returns',   sub: '7-day hassle-free returns'  },
-  { icon: Shield,         title: 'Secure Payment', sub: '100% safe & encrypted'      },
-  { icon: HeadphonesIcon, title: '24/7 Support',   sub: "We're always here for you"  },
+  { icon: Truck,          title: 'Fast Delivery',     sub: 'Delhi NCR same-day available'  },
+  { icon: Shield,         title: 'Genuine Products',  sub: 'Authorised brand distributors'  },
+  { icon: RotateCcw,      title: 'Easy Returns',      sub: '7-day hassle-free returns'      },
+  { icon: HeadphonesIcon, title: '24/7 Support',      sub: 'Security experts always ready'  },
 ];
 
 const STATS = [
-  { number: '50K+', label: 'Happy Customers', icon: Heart   },
-  { number: '4.9★', label: 'Average Rating',  icon: Award   },
-  { number: '300+', label: 'Products Listed', icon: Package  },
-  { number: '8',    label: 'Categories',      icon: Tag     },
+  { number: '5K+',  label: 'Happy Customers',     icon: Heart   },
+  { number: '4.8★', label: 'Average Rating',      icon: Award   },
+  { number: '200+', label: 'Products Listed',     icon: Package  },
+  { number: '8',    label: 'Security Categories', icon: Tag     },
 ];
 
-// ─────────────────────────────────────────────────────────────────────────────
-
 export default function Homepage() {
+  const [heroSlide, setHeroSlide] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const statsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const t = setInterval(() => setHeroSlide((s) => (s + 1) % HERO_SLIDES.length), 5500);
+    return () => clearInterval(t);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -127,90 +150,95 @@ export default function Homepage() {
   const all: Product[] = Array.isArray(data) ? data : [];
 
   return (
-    <div className="min-h-screen bg-[#FAFAF8] overflow-hidden font-sans text-[#2A2825]">
+    <div className="min-h-screen bg-[#0f0f0f] overflow-hidden text-white">
 
-     {/* ── HERO ─────────────────────────────────────────────────────────── */}
-     <section 
-        className="relative overflow-hidden min-h-[560px] flex items-center border-b border-[#E8E6E1] bg-cover bg-center"
-        // Yahan par apni banner image ka URL daal dena 👇
-        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1597668900045-b9283c0de174?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }} 
-      >
-        {/* Overlay taaki text clear dikhe */}
-        <div className="absolute inset-0 bg-[#F7F5F0]/85 backdrop-blur-[2px]"></div>
+      {/* ── HERO SLIDER ──────────────────────────────────────────────────── */}
+      <section className="relative overflow-hidden min-h-[580px] md:min-h-[640px] flex items-center">
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 py-16 md:py-24 w-full">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+        {HERO_SLIDES.map((slide, i) => (
+          <div
+            key={i}
+            className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000"
+            style={{
+              backgroundImage: `url('${slide.bg}')`,
+              opacity: i === heroSlide ? 1 : 0,
+            }}
+          />
+        ))}
 
-            {/* LEFT */}
-            <div className="text-[#2A2825]">
-              <div className="inline-flex items-center gap-2 mb-6">
-                <span className="w-8 h-[1px] bg-[#B86B52]" />
-                <span className="text-xs font-semibold text-[#B86B52] uppercase tracking-widest">Shop Everything</span>
-              </div>
-              <h1 className="text-4xl md:text-6xl font-light leading-[1.1] mb-6 font-serif">
-                One store.
-                <span className="block font-medium text-[#B86B52] mt-2">Everything you need.</span>
-              </h1>
-              <p className="text-[#6B665E] text-base md:text-lg mb-10 leading-relaxed max-w-md">
-                From home decor and fashion to electronics and sports gear — discover 8 curated categories with 300+ quality products, delivered fast.
-              </p>
-              <div className="flex flex-wrap gap-4 mb-10">
-                <Link href="/collections" className="inline-flex items-center gap-2 px-8 py-4 bg-[#2A2825] text-white font-medium hover:bg-[#403D39] transition-colors">
-                  Explore All Products <ChevronRight className="w-4 h-4" />
-                </Link>
-                <Link href="/sale" className="inline-flex items-center gap-2 px-8 py-4 bg-transparent text-[#2A2825] font-medium border border-[#2A2825] hover:bg-[#2A2825] hover:text-white transition-colors backdrop-blur-sm">
-                  <Tag className="w-4 h-4" /> View Deals
-                </Link>
-              </div>
-              <div className="flex flex-wrap gap-6 border-t border-[#E8E6E1]/50 pt-6">
-                {['🚚 Free Delivery > ₹499', '↩️ Easy Returns', '🔒 Secure Checkout'].map((b, i) => (
-                  <span key={i} className="text-[#6B665E] text-sm tracking-wide">{b}</span>
-                ))}
-              </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0f0f0f] via-[#0f0f0f]/85 to-[#0f0f0f]/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f0f]/60 via-transparent to-transparent" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 py-20 w-full">
+          <div className="max-w-xl">
+            <span className="inline-block text-[#2563eb] text-xs font-bold uppercase tracking-[0.3em] mb-5">
+              {HERO_SLIDES[heroSlide].label}
+            </span>
+            <h1
+              key={heroSlide}
+              className="font-sora font-extrabold text-5xl md:text-6xl lg:text-7xl text-white leading-[1.05] mb-6 whitespace-pre-line animate-hero-fade"
+            >
+              {HERO_SLIDES[heroSlide].title}
+            </h1>
+            <p className="text-gray-400 text-base md:text-lg mb-10 leading-relaxed max-w-md">
+              {HERO_SLIDES[heroSlide].subtitle}
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href={HERO_SLIDES[heroSlide].cta.href}
+                className="inline-flex items-center gap-2 px-8 py-4 bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-bold text-sm uppercase tracking-wider transition-colors"
+              >
+                {HERO_SLIDES[heroSlide].cta.text} <ChevronRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href={HERO_SLIDES[heroSlide].secondary.href}
+                className="inline-flex items-center gap-2 px-8 py-4 border border-white/20 text-white/80 hover:bg-white/10 hover:text-white font-medium text-sm uppercase tracking-wider transition-colors"
+              >
+                {HERO_SLIDES[heroSlide].secondary.text}
+              </Link>
             </div>
+          </div>
 
-            {/* RIGHT — 4 Category Cards */}
-            <div className="grid grid-cols-2 gap-4">
-              {HERO_CARDS.map((card) => (
-                <div
-                  key={card.href}
-                  className={`${card.bg} p-8 flex flex-col items-center justify-center gap-4 ${card.border ? 'border border-[#E8E6E1] hover:border-[#B86B52]' : ''} transition-colors ${card.bg === 'bg-white' ? 'bg-white/90 backdrop-blur-sm' : ''}`}
-                >
-                  {card.accent ? (
-                    <>
-                      <p className="text-xs font-medium uppercase tracking-widest text-white/80">Deals</p>
-                      <p className="text-4xl font-light text-white">Sale</p>
-                      <p className="text-sm font-medium text-white">Up to 70% Off</p>
-                      <Link href={card.href} className="mt-2 text-xs bg-white text-[#B86B52] font-semibold px-4 py-2 uppercase tracking-wide hover:bg-[#F7F5F0] transition-colors">
-                        View Deals
-                      </Link>
-                    </>
-                  ) : (
-                    <>
-                      <span className="text-4xl">{card.emoji}</span>
-                      <p className="text-sm font-medium text-[#2A2825] text-center tracking-wide">{card.name}</p>
-                      <Link href={card.href} className="text-xs text-[#6B665E] uppercase tracking-widest hover:text-[#B86B52] transition-colors">Shop Now</Link>
-                    </>
-                  )}
-                </div>
+          <div className="absolute bottom-8 left-4 flex items-center gap-3">
+            <button
+              onClick={() => setHeroSlide((s) => (s - 1 + HERO_SLIDES.length) % HERO_SLIDES.length)}
+              className="p-2 border border-white/20 text-white/50 hover:border-white/60 hover:text-white transition-colors"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <div className="flex gap-2">
+              {HERO_SLIDES.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setHeroSlide(i)}
+                  className={`h-[3px] rounded-full transition-all duration-400 ${
+                    i === heroSlide ? 'bg-[#2563eb] w-8' : 'bg-white/25 w-4 hover:bg-white/50'
+                  }`}
+                />
               ))}
             </div>
+            <button
+              onClick={() => setHeroSlide((s) => (s + 1) % HERO_SLIDES.length)}
+              className="p-2 border border-white/20 text-white/50 hover:border-white/60 hover:text-white transition-colors"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
       </section>
 
       {/* ── TRUST STRIP ──────────────────────────────────────────────────── */}
-      <section className="bg-white border-b border-[#E8E6E1]">
-        <div className="max-w-7xl mx-auto px-4 py-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <section className="bg-[#0a0a0a] border-y border-[#1a1a1a]">
+        <div className="max-w-7xl mx-auto px-4 py-5">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {TRUST_STRIP.map((item, i) => {
               const Icon = item.icon;
               return (
-                <div key={i} className="flex items-center gap-4 px-2">
-                  <Icon className="w-6 h-6 text-[#A88C7D] stroke-[1.5]" />
+                <div key={i} className="flex items-center gap-3 px-2">
+                  <Icon className="w-5 h-5 text-[#2563eb] flex-shrink-0 stroke-[1.5]" />
                   <div>
-                    <p className="text-sm font-medium text-[#2A2825]">{item.title}</p>
-                    <p className="text-xs text-[#8A857D] mt-0.5">{item.sub}</p>
+                    <p className="text-xs font-semibold text-white">{item.title}</p>
+                    <p className="text-[11px] text-[#555] mt-0.5">{item.sub}</p>
                   </div>
                 </div>
               );
@@ -219,16 +247,16 @@ export default function Homepage() {
         </div>
       </section>
 
-      {/* ── CATEGORIES STRIP ─────────────────────────────────────────────── */}
-      <section className="py-16 px-4 bg-[#FAFAF8]">
+      {/* ── CATEGORIES GRID ──────────────────────────────────────────────── */}
+      <section className="py-14 px-4 bg-[#0f0f0f]">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-end justify-between mb-10">
+          <div className="flex items-end justify-between mb-8">
             <div>
-              <p className="text-xs font-medium text-[#B86B52] uppercase tracking-widest mb-2">Browse</p>
-              <h2 className="text-3xl font-light text-[#2A2825] font-serif">Shop by Category</h2>
+              <p className="text-[#2563eb] text-xs font-bold uppercase tracking-[0.25em] mb-1.5">Browse</p>
+              <h2 className="font-sora font-bold text-2xl md:text-3xl text-white">Shop by Category</h2>
             </div>
-            <Link href="/shop" className="hidden md:flex items-center gap-2 text-[#2A2825] font-medium text-sm hover:text-[#B86B52] transition-colors border-b border-[#2A2825] hover:border-[#B86B52] pb-1">
-              View all products
+            <Link href="/collections" className="hidden md:flex items-center gap-1.5 text-sm text-gray-400 hover:text-[#2563eb] transition-colors">
+              All products <ChevronRight className="w-4 h-4" />
             </Link>
           </div>
           <div className="grid grid-cols-4 md:grid-cols-8 gap-3">
@@ -236,10 +264,12 @@ export default function Homepage() {
               <Link
                 key={cat.slug}
                 href={`/category/${cat.slug}`}
-                className={`group flex flex-col items-center justify-center py-7 px-3 ${cat.bg} border ${cat.border} transition-colors duration-300`}
+                className="group flex flex-col items-center justify-center py-6 px-2 bg-[#161616] border border-[#252525] hover:border-[#2563eb] hover:bg-[#1a1a1a] transition-all duration-200"
               >
-                <span className="text-3xl mb-3">{cat.emoji}</span>
-                <span className="text-xs font-medium text-[#2A2825] text-center tracking-wide leading-tight">{cat.name}</span>
+                <span className="text-2xl mb-2.5">{cat.emoji}</span>
+                <span className="text-[10px] font-medium text-gray-400 group-hover:text-white text-center tracking-wide leading-tight transition-colors">
+                  {cat.name}
+                </span>
               </Link>
             ))}
           </div>
@@ -247,57 +277,78 @@ export default function Homepage() {
       </section>
 
       {/* ── PROMO BANNERS ────────────────────────────────────────────────── */}
-      <section className="pb-12 px-4">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="md:col-span-2 bg-[#2A2825] p-10 md:p-14 flex items-center relative overflow-hidden">
+      <section className="pb-14 px-4 bg-[#0f0f0f]">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-5">
+
+          <div className="md:col-span-2 bg-[#161616] border border-[#252525] p-10 md:p-14 relative overflow-hidden">
+            <div className="absolute right-4 top-1/2 -translate-y-1/2 text-[120px] opacity-5 select-none pointer-events-none">
+              🛡️
+            </div>
             <div className="relative z-10">
-              <p className="text-[#A88C7D] text-xs font-medium uppercase tracking-widest mb-4">Limited Time</p>
-              <h3 className="text-3xl md:text-4xl font-light text-white mb-4 font-serif">Mega Sale is Live</h3>
-              <p className="text-[#D5D2CC] text-base mb-8 max-w-sm font-light">
-                Up to 70% off across Home Decor, Electronics, Fashion and more. Don&apos;t miss out.
-              </p>
-              <Link href="/sale" className="inline-flex items-center gap-2 px-6 py-3 bg-white text-[#2A2825] font-medium text-sm hover:bg-[#F0EFEA] transition-colors">
+              <span className="text-[#2563eb] text-[10px] font-bold uppercase tracking-[0.3em] mb-4 block">
+                Limited Time
+              </span>
+              <h3 className="font-sora font-extrabold text-3xl md:text-4xl text-white mb-3">
+                Security Sale is Live
+              </h3>
+              <ul className="text-gray-400 text-sm space-y-1.5 mb-8">
+                <li>• Up to 50% off on CCTV cameras &amp; systems</li>
+                <li>• Best prices on video door phones in Delhi NCR</li>
+                <li>• New security products added weekly</li>
+              </ul>
+              <Link
+                href="/sale"
+                className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-bold text-sm uppercase tracking-wider transition-colors"
+              >
                 Shop All Deals <ChevronRight className="w-4 h-4" />
               </Link>
             </div>
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 text-[120px] opacity-10 select-none pointer-events-none">🛍️</div>
           </div>
-          <div className="flex flex-col gap-6">
-            <Link href="/category/sports-outdoors" className="bg-[#A88C7D] p-8 flex items-center justify-between flex-1 hover:bg-[#977C6D] transition-colors group">
+
+          <div className="flex flex-col gap-5">
+            <Link
+              href="/category/video-door-phones"
+              className="flex-1 bg-[#161616] border border-[#252525] hover:border-[#2563eb] p-7 flex items-center justify-between group transition-all duration-200"
+            >
               <div>
-                <p className="text-white font-medium text-lg mb-1 font-serif">Sports & Outdoors</p>
-                <p className="text-white/80 text-sm font-light">Gear up for more</p>
+                <span className="text-[10px] text-[#555] uppercase tracking-widest mb-1 block">Category</span>
+                <p className="font-sora font-bold text-white text-lg mb-1">Video Door Phones</p>
+                <p className="text-gray-500 text-sm">See who&apos;s at your door</p>
               </div>
-              <ChevronRight className="w-5 h-5 text-white group-hover:translate-x-1 transition-transform" />
+              <ChevronRight className="w-5 h-5 text-gray-600 group-hover:text-[#2563eb] group-hover:translate-x-1 transition-all" />
             </Link>
-            <Link href="/category/toys-games" className="bg-[#8A9A86] p-8 flex items-center justify-between flex-1 hover:bg-[#788A74] transition-colors group">
+            <Link
+              href="/category/access-control"
+              className="flex-1 bg-[#161616] border border-[#252525] hover:border-[#2563eb] p-7 flex items-center justify-between group transition-all duration-200"
+            >
               <div>
-                <p className="text-white font-medium text-lg mb-1 font-serif">Toys & Games</p>
-                <p className="text-white/80 text-sm font-light">Fun for everyone</p>
+                <span className="text-[10px] text-[#555] uppercase tracking-widest mb-1 block">Category</span>
+                <p className="font-sora font-bold text-white text-lg mb-1">Access Control</p>
+                <p className="text-gray-500 text-sm">Biometric &amp; card systems</p>
               </div>
-              <ChevronRight className="w-5 h-5 text-white group-hover:translate-x-1 transition-transform" />
+              <ChevronRight className="w-5 h-5 text-gray-600 group-hover:text-[#2563eb] group-hover:translate-x-1 transition-all" />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* ── CATEGORY-WISE PRODUCT SECTIONS ───────────────────────────────── */}
+      {/* ── PRODUCT CAROUSELS ────────────────────────────────────────────── */}
       {isLoading ? (
-        <section className="py-20 px-4 bg-white border-t border-[#E8E6E1]">
+        <section className="py-14 px-4 bg-[#0a0a0a] border-t border-[#1a1a1a]">
           <div className="max-w-7xl mx-auto">
-            <div className="h-8 bg-[#F0EFEA] rounded w-48 mb-10 animate-pulse" />
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {[...Array(8)].map((_, i) => <ProductSkeleton key={i} />)}
+            <div className="h-7 bg-[#161616] rounded w-48 mb-8 animate-pulse" />
+            <div className="flex gap-4 overflow-hidden">
+              {[...Array(5)].map((_, i) => <ProductSkeleton key={i} />)}
             </div>
           </div>
         </section>
       ) : isError ? (
-        <section className="py-20 px-4 bg-white border-t border-[#E8E6E1]">
-          <div className="max-w-7xl mx-auto text-center py-24 border border-[#E8E6E1]">
-            <p className="text-[#6B665E] mb-4">Unable to load products right now.</p>
+        <section className="py-20 px-4 bg-[#0a0a0a] border-t border-[#1a1a1a]">
+          <div className="max-w-7xl mx-auto text-center py-20 border border-[#252525]">
+            <p className="text-gray-500 mb-4">Unable to load products right now.</p>
             <button
               onClick={() => window.location.reload()}
-              className="px-6 py-2 border border-[#2A2825] text-[#2A2825] hover:bg-[#2A2825] hover:text-white transition-colors"
+              className="px-6 py-2 border border-[#2563eb] text-[#2563eb] hover:bg-[#2563eb] hover:text-white transition-colors text-sm"
             >
               Refresh
             </button>
@@ -312,73 +363,65 @@ export default function Homepage() {
                        c.name.toLowerCase().replace(/\s+/g, '-') === cat.slug
               )
             )
-            .slice(0, 4);
+            .slice(0, 8);
 
           if (catProducts.length === 0) return null;
-
-          const isEven = catIdx % 2 === 0;
 
           return (
             <section
               key={cat.slug}
-              className={`py-16 px-4 ${isEven ? 'bg-white' : 'bg-[#FAFAF8]'} border-t border-[#E8E6E1]`}
+              className={`py-14 px-4 border-t border-[#1a1a1a] ${catIdx % 2 === 0 ? 'bg-[#0a0a0a]' : 'bg-[#0f0f0f]'}`}
             >
               <div className="max-w-7xl mx-auto">
 
-                {/* Header */}
-                <div className="flex items-center justify-between mb-10">
-                  <div className="flex items-center gap-4">
-                    <span className="text-3xl">{cat.emoji}</span>
+                <div className="flex items-center justify-between mb-7">
+                  <div className="flex items-center gap-3">
+                    <span className="text-2xl">{cat.emoji}</span>
                     <div>
-                      <p className="text-xs font-medium text-[#B86B52] uppercase tracking-widest mb-0.5">
-                        Browse Collection
+                      <p className="text-[10px] font-bold text-[#2563eb] uppercase tracking-[0.25em] mb-0.5">
+                        Collection
                       </p>
-                      <h2 className="text-2xl font-light text-[#2A2825] font-serif">
+                      <h2 className="font-sora font-bold text-xl text-white">
                         {cat.name}
                       </h2>
                     </div>
                   </div>
                   <Link
                     href={`/category/${cat.slug}`}
-                    className="hidden md:flex items-center gap-2 text-sm font-medium text-[#2A2825] hover:text-[#B86B52] transition-colors border-b border-[#2A2825] hover:border-[#B86B52] pb-0.5"
+                    className="hidden md:flex items-center gap-1.5 text-sm text-gray-500 hover:text-[#2563eb] transition-colors border border-[#252525] hover:border-[#2563eb] px-4 py-2"
                   >
                     View all <ChevronRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
 
-                {/* Products */}
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-                  {catProducts.map((prod, i) => (
+                <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-3 snap-x snap-mandatory -mx-4 px-4">
+                  {catProducts.map((prod) => (
                     <div
                       key={prod.id}
-                      className="animate-[fadeInUp_0.5s_ease_forwards] opacity-0"
-                      style={{ animationDelay: `${i * 60}ms` }}
+                      className="flex-shrink-0 w-52 md:w-60 snap-start"
                     >
                       <ProductCard product={prod} />
                     </div>
                   ))}
 
-                  {/* 5th "See All" dashed tile — desktop only */}
                   <Link
                     href={`/category/${cat.slug}`}
-                    className="hidden lg:flex flex-col items-center justify-center gap-3 border-2 border-dashed border-[#E8E6E1] hover:border-[#B86B52] hover:bg-[#F7F5F0] transition-all duration-300 min-h-[280px] group"
+                    className="flex-shrink-0 w-40 snap-start flex flex-col items-center justify-center gap-3 border-2 border-dashed border-[#252525] hover:border-[#2563eb] min-h-[300px] bg-transparent transition-all duration-300 group"
                   >
-                    <span className="text-4xl opacity-40 group-hover:opacity-100 transition-opacity">{cat.emoji}</span>
-                    <p className="text-xs font-semibold uppercase tracking-widest text-[#8A857D] group-hover:text-[#B86B52] transition-colors">
+                    <span className="text-3xl opacity-30 group-hover:opacity-100 transition-opacity">{cat.emoji}</span>
+                    <p className="text-[10px] font-bold text-[#444] group-hover:text-[#2563eb] uppercase tracking-widest transition-colors">
                       See All
                     </p>
-                    <p className="text-xs text-[#A3A09B] text-center px-4">{cat.name}</p>
-                    <ChevronRight className="w-4 h-4 text-[#A3A09B] group-hover:text-[#B86B52] group-hover:translate-x-1 transition-all" />
+                    <ChevronRight className="w-4 h-4 text-[#444] group-hover:text-[#2563eb] transition-colors" />
                   </Link>
                 </div>
 
-                {/* Mobile CTA */}
-                <div className="mt-8 md:hidden text-center">
+                <div className="mt-6 md:hidden">
                   <Link
                     href={`/category/${cat.slug}`}
-                    className="inline-flex items-center gap-2 px-8 py-3 border border-[#2A2825] text-sm font-medium text-[#2A2825] hover:bg-[#2A2825] hover:text-white transition-colors"
+                    className="inline-flex items-center gap-2 px-6 py-2.5 border border-[#252525] hover:border-[#2563eb] text-xs font-medium text-gray-400 hover:text-white transition-all"
                   >
-                    View all {cat.name} <ChevronRight className="w-4 h-4" />
+                    View all {cat.name} <ChevronRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
               </div>
@@ -387,47 +430,64 @@ export default function Homepage() {
         })
       )}
 
-      {/* ── CATEGORY SPOTLIGHT ───────────────────────────────────────────── */}
-      <section className="py-12 px-4 bg-[#FAFAF8] border-t border-[#E8E6E1]">
+      {/* ── MID-PAGE PROMO ───────────────────────────────────────────────── */}
+      <section className="py-14 px-4 bg-[#0a0a0a] border-t border-[#1a1a1a]">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-[#EFEAE6] p-10 md:p-16 flex flex-col md:flex-row items-center justify-between gap-10">
-            <div className="max-w-lg">
-              <h2 className="text-3xl font-light text-[#2A2825] font-serif mb-4">Find What You Need</h2>
-              <p className="text-[#6B665E] text-base leading-relaxed mb-8">
-                From everyday essentials to lifestyle upgrades — browse our 8 categories and discover products that fit your life perfectly.
-              </p>
-              <Link href="/shop" className="inline-flex items-center gap-2 px-8 py-3 bg-[#2A2825] text-white font-medium hover:bg-[#403D39] transition-colors">
-                Browse All Categories <ChevronRight className="w-4 h-4" />
-              </Link>
+          <div className="bg-gradient-to-r from-[#161616] via-[#1a1a1a] to-[#161616] border border-[#252525] p-10 md:p-16 relative overflow-hidden">
+            <div className="absolute -right-10 top-1/2 -translate-y-1/2 text-[160px] opacity-[0.04] select-none pointer-events-none">
+              🛡️
             </div>
-            <div className="flex flex-wrap gap-3 max-w-sm justify-center md:justify-end">
-              {CATEGORIES.map((cat) => (
+            <div className="relative z-10 md:flex md:items-center md:justify-between gap-12">
+              <div className="max-w-lg mb-8 md:mb-0">
+                <span className="text-[#2563eb] text-[10px] font-bold uppercase tracking-[0.3em] mb-3 block">
+                  Complete Security Solutions
+                </span>
+                <h2 className="font-sora font-extrabold text-3xl md:text-4xl text-white mb-4 leading-tight">
+                  Protect What Matters
+                </h2>
+                <p className="text-gray-400 text-base leading-relaxed mb-8">
+                  From CCTV cameras to smart locks — browse 8 security categories with 200+ professional-grade products for your home and business in Delhi NCR.
+                </p>
                 <Link
-                  key={cat.slug}
-                  href={`/category/${cat.slug}`}
-                  className="px-5 py-2.5 bg-white text-sm font-medium text-[#2A2825] tracking-wide border border-transparent hover:border-[#A88C7D] transition-colors flex items-center gap-2"
+                  href="/collections"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-bold text-sm uppercase tracking-wider transition-colors"
                 >
-                  <span>{cat.emoji}</span> {cat.name}
+                  Browse All <ChevronRight className="w-4 h-4" />
                 </Link>
-              ))}
+              </div>
+              <div className="flex flex-wrap gap-2.5 max-w-sm">
+                {CATEGORIES.map((cat) => (
+                  <Link
+                    key={cat.slug}
+                    href={`/category/${cat.slug}`}
+                    className="flex items-center gap-2 px-4 py-2 bg-[#0f0f0f] border border-[#252525] hover:border-[#2563eb] text-xs font-medium text-gray-400 hover:text-white transition-all"
+                  >
+                    <span>{cat.emoji}</span> {cat.name}
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* ── WHY CHOOSE US ────────────────────────────────────────────────── */}
-      <section className="py-24 px-4 bg-white border-t border-[#E8E6E1]">
+      <section className="py-20 px-4 bg-[#0f0f0f] border-t border-[#1a1a1a]">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+          <div className="text-center mb-14">
+            <p className="text-[#2563eb] text-[10px] font-bold uppercase tracking-[0.3em] mb-3">Why Suraksha Market</p>
+            <h2 className="font-sora font-bold text-2xl md:text-3xl text-white">Your Security, Our Priority</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {WHY_US.map((item, i) => {
               const Icon = item.icon;
               return (
-                <div key={i} className="flex flex-col items-center">
-                  <div className={`w-16 h-16 ${item.bg} flex items-center justify-center rounded-full mb-6`}>
-                    <Icon className={`w-7 h-7 ${item.color} stroke-[1.5]`} />
+                <div key={i} className="flex flex-col items-center text-center p-8 bg-[#161616] border border-[#252525] hover:border-[#2563eb] transition-colors">
+                  <div className="w-14 h-14 bg-[#1a1a1a] border border-[#252525] flex items-center justify-center mb-6">
+                    <Icon className="w-6 h-6 text-[#2563eb] stroke-[1.5]" />
                   </div>
-                  <h3 className="text-lg font-serif text-[#2A2825] mb-3">{item.title}</h3>
-                  <p className="text-[#6B665E] text-sm leading-relaxed max-w-xs">{item.desc}</p>
+                  <h3 className="font-sora font-bold text-white text-base mb-3">{item.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
                 </div>
               );
             })}
@@ -436,45 +496,46 @@ export default function Homepage() {
       </section>
 
       {/* ── STATS ────────────────────────────────────────────────────────── */}
-      <section ref={statsRef} className="py-20 px-4 bg-[#2A2825]">
-        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-white/10">
+      <section ref={statsRef} className="py-16 px-4 bg-[#0a0a0a] border-t border-[#1a1a1a]">
+        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 divide-x divide-[#1a1a1a]">
           {STATS.map((stat, i) => (
             <div
               key={i}
-              className={`text-center px-4 transition-all duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
-              style={{ transitionDelay: `${i * 150}ms` }}
+              className={`text-center px-4 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+              style={{ transitionDelay: `${i * 120}ms` }}
             >
-              <div className="text-4xl md:text-5xl font-light text-white mb-3 font-serif">{stat.number}</div>
-              <div className="text-xs text-[#A88C7D] uppercase tracking-widest">{stat.label}</div>
+              <div className="font-sora font-extrabold text-4xl md:text-5xl text-white mb-2">{stat.number}</div>
+              <div className="text-[11px] text-[#555] uppercase tracking-[0.2em]">{stat.label}</div>
             </div>
           ))}
         </div>
       </section>
 
       {/* ── TESTIMONIALS ─────────────────────────────────────────────────── */}
-      <section className="py-24 px-4 bg-[#FAFAF8]">
+      <section className="py-20 px-4 bg-[#0f0f0f] border-t border-[#1a1a1a]">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-light text-[#2A2825] font-serif mb-3">What Customers Say</h2>
-            <p className="text-[#8A857D] text-sm tracking-wide">Real reviews from real buyers</p>
+          <div className="text-center mb-14">
+            <p className="text-[#2563eb] text-[10px] font-bold uppercase tracking-[0.3em] mb-3">Reviews</p>
+            <h2 className="font-sora font-bold text-2xl md:text-3xl text-white">What Delhi NCR Customers Say</h2>
+            <p className="text-[#555] text-sm mt-2">Real reviews from verified buyers</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {TESTIMONIALS.map((review, i) => (
-              <div key={i} className="bg-white p-10 border border-[#E8E6E1] flex flex-col justify-between">
+              <div key={i} className="bg-[#161616] border border-[#252525] p-8 flex flex-col justify-between hover:border-[#333] transition-colors">
                 <div>
-                  <div className="flex items-center gap-1 mb-6">
+                  <div className="flex items-center gap-1 mb-5">
                     {[...Array(review.rating)].map((_, j) => (
-                      <Star key={j} className="w-4 h-4 fill-[#A88C7D] text-[#A88C7D]" />
+                      <Star key={j} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                     ))}
                   </div>
-                  <p className="text-[#2A2825] text-base leading-relaxed mb-8 font-serif italic">&quot;{review.text}&quot;</p>
+                  <p className="text-gray-300 text-sm leading-relaxed mb-7 italic">&quot;{review.text}&quot;</p>
                 </div>
-                <div className="flex items-center justify-between pt-6 border-t border-[#F0EFEA]">
+                <div className="flex items-center justify-between pt-5 border-t border-[#1e1e1e]">
                   <div>
-                    <p className="text-sm font-medium text-[#2A2825]">{review.name}</p>
-                    <p className="text-xs text-[#8A857D] mt-1">{review.location}</p>
+                    <p className="text-sm font-semibold text-white">{review.name}</p>
+                    <p className="text-xs text-[#555] mt-0.5">{review.location}</p>
                   </div>
-                  <span className="text-[10px] text-[#A88C7D] uppercase tracking-widest border border-[#EFEAE6] px-3 py-1 bg-[#FAFAF8]">
+                  <span className="text-[10px] text-[#2563eb] uppercase tracking-widest border border-[#252525] px-3 py-1 bg-[#0f0f0f]">
                     {review.tag}
                   </span>
                 </div>
@@ -485,31 +546,26 @@ export default function Homepage() {
       </section>
 
       {/* ── NEWSLETTER ───────────────────────────────────────────────────── */}
-      <section className="py-24 px-4 bg-[#F7F5F0] border-t border-[#E8E6E1]">
+      <section className="py-20 px-4 bg-[#0a0a0a] border-t border-[#1a1a1a]">
         <div className="max-w-xl mx-auto text-center">
-          <h2 className="text-2xl md:text-3xl font-light text-[#2A2825] font-serif mb-4">Stay in the loop</h2>
-          <p className="text-[#6B665E] text-sm mb-10 leading-relaxed">
-            Get early access to new arrivals, exclusive deals across all categories, and subscriber-only offers.
+          <p className="text-[#2563eb] text-[10px] font-bold uppercase tracking-[0.3em] mb-3">Stay Updated</p>
+          <h2 className="font-sora font-bold text-2xl md:text-3xl text-white mb-4">Security Tips &amp; Deals</h2>
+          <p className="text-gray-500 text-sm mb-10 leading-relaxed">
+            Get the latest security product launches, exclusive Delhi NCR deals, and expert tips straight to your inbox.
           </p>
-          <div className="flex flex-col sm:flex-row gap-0 max-w-md mx-auto border border-[#2A2825] bg-white">
+          <div className="flex flex-col sm:flex-row gap-0 max-w-md mx-auto border border-[#252525] bg-[#161616]">
             <input
               type="email"
               placeholder="Your email address"
-              className="flex-1 px-6 py-4 bg-transparent text-[#2A2825] placeholder-[#A3A09B] focus:outline-none text-sm"
+              className="flex-1 px-6 py-4 bg-transparent text-white placeholder-[#444] focus:outline-none text-sm"
             />
-            <button className="px-8 py-4 bg-[#2A2825] text-white font-medium hover:bg-[#403D39] transition-colors text-sm uppercase tracking-wider">
+            <button className="px-8 py-4 bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-bold transition-colors text-sm uppercase tracking-wider">
               Subscribe
             </button>
           </div>
         </div>
       </section>
 
-      <style>{`
-        @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(16px); }
-          to   { opacity: 1; transform: translateY(0);    }
-        }
-      `}</style>
     </div>
   );
 }

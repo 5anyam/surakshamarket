@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 const WC_CONFIG = {
-  BASE_URL: 'https://cms.caishenunited.com',
-  KEY: 'ck_9a1fbb9afa025bbe8591eb4322c3e1c68e1b1002',
-  SECRET: 'cs_42d947c7a1acb0c0ca89ca17b35629a530097e44',
+  BASE_URL: 'https://cms.surakshamarket.com',
+  KEY: 'ck_75b4bd0aa015823ec4c01e6f8ac1be88bcf68128',
+  SECRET: 'cs_8763147408fd023d73d196e1864cf233ee100065',
 };
 
 // ✅ Define proper types

@@ -1,22 +1,28 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: [
-      './app/**/*.{js,ts,jsx,tsx}', // For App Router
-      './src/**/*.{js,ts,jsx,tsx}', // For /src folder
+      './app/**/*.{js,ts,jsx,tsx}',
+      './src/**/*.{js,ts,jsx,tsx}',
+      './components/**/*.{js,ts,jsx,tsx}',
     ],
     theme: {
       darkMode: 'class',
       extend: {
         backgroundImage: {
-          'product': "url('/product-bg.jpg')", // 👈 replace with your actual image path
+          'product': "url('/product-bg.jpg')",
         },
         fontFamily: {
-          f: ['Fredoka', 'sans-serif'], // <== now you can use 'font-f'
+          f:    ['Fredoka', 'sans-serif'],
+          sora: ['Sora', 'sans-serif'],
+          sans: ['Inter', 'sans-serif'],
+        },
+        colors: {
+          accent: '#2563eb',
         },
         keyframes: {
           slide: {
-            '0%': { transform: 'translateX(0)' },
-            '100%': { transform: 'translateX(-50%)' }, // adjust as needed
+            '0%':   { transform: 'translateX(0)' },
+            '100%': { transform: 'translateX(-50%)' },
           },
         },
         animation: {
@@ -26,4 +32,3 @@ module.exports = {
     },
     plugins: ['@tailwindcss/typography'],
   }
-  

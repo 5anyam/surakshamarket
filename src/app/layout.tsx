@@ -66,6 +66,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Google Fonts — Sora (headings) + Inter (body) */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
         {/* Favicon and App Icons */}
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -298,7 +303,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </Script>
       </head>
 
-      <body className="overflow-x-hidden overflow-y-scroll antialiased bg-white dark:bg-[#0f172a] transition-colors duration-300">
+      <body className="overflow-x-hidden overflow-y-scroll antialiased bg-[#0f0f0f] text-white">
         {/* GTM noscript */}
         <noscript>
           <iframe
