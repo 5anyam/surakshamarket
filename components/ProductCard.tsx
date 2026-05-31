@@ -30,12 +30,12 @@ export default function ProductCard({ product }: { product: Product }) {
   return (
     <Link
       href={productUrl}
-      className="group block h-full bg-[#161616] border border-[#252525] hover:border-[#2563eb] transition-all duration-300 rounded-sm overflow-hidden"
+      className="group block h-full bg-white border border-gray-200 hover:border-[#2563eb] hover:shadow-md transition-all duration-300 rounded-sm overflow-hidden"
     >
       <div className="relative flex flex-col h-full">
 
         {/* IMAGE */}
-        <div className="relative aspect-square overflow-hidden bg-[#1a1a1a]">
+        <div className="relative aspect-square overflow-hidden bg-gray-50">
           <img
             src={product.images?.[0]?.src || "/placeholder.png"}
             alt={product.name}
@@ -67,13 +67,13 @@ export default function ProductCard({ product }: { product: Product }) {
 
           {/* Category / Brand */}
           {product.category && (
-            <span className="text-[10px] text-[#555] uppercase tracking-[0.18em] font-medium">
+            <span className="text-[10px] text-gray-400 uppercase tracking-[0.18em] font-medium">
               {product.category}
             </span>
           )}
 
           {/* Product Name */}
-          <h3 className="text-sm font-medium text-gray-200 line-clamp-2 leading-snug min-h-[2.4rem] group-hover:text-white transition-colors duration-200">
+          <h3 className="text-sm font-medium text-gray-700 line-clamp-2 leading-snug min-h-[2.4rem] group-hover:text-gray-900 transition-colors duration-200">
             {product.name}
           </h3>
 
@@ -87,12 +87,12 @@ export default function ProductCard({ product }: { product: Product }) {
                     className={`w-3 h-3 ${
                       i < Math.round(rating)
                         ? "text-yellow-400 fill-yellow-400"
-                        : "text-[#333] fill-[#333]"
+                        : "text-gray-200 fill-gray-200"
                     }`}
                   />
                 ))}
               </div>
-              <span className="text-[10px] text-[#555] ml-0.5">
+              <span className="text-[10px] text-gray-400 ml-0.5">
                 ({product.rating_count || 0})
               </span>
             </div>
@@ -101,16 +101,16 @@ export default function ProductCard({ product }: { product: Product }) {
           <div className="flex-1" />
 
           {/* PRICE */}
-          <div className="flex items-baseline gap-2 pt-2 border-t border-[#1e1e1e]">
-            <span className="text-base font-bold text-white">
+          <div className="flex items-baseline gap-2 pt-2 border-t border-gray-100">
+            <span className="text-base font-bold text-gray-900">
               ₹{salePrice.toLocaleString('en-IN')}
             </span>
             {isOnSale && (
               <>
-                <span className="text-xs text-[#444] line-through">
+                <span className="text-xs text-gray-400 line-through">
                   ₹{originalPrice.toLocaleString('en-IN')}
                 </span>
-                <span className="text-[10px] font-bold text-green-400 ml-auto">
+                <span className="text-[10px] font-bold text-green-600 ml-auto">
                   {discountPercent}% off
                 </span>
               </>

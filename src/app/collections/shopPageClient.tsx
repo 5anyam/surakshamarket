@@ -69,20 +69,20 @@ export default function ShopPageClient({ products }: ShopPageClientProps) {
   const hasActiveFilters = !!(searchTerm || selectedCategory || priceRange.min || priceRange.max);
 
   const inputClass =
-    'w-full px-4 py-2.5 border border-[#252525] bg-[#1a1a1a] text-sm text-gray-300 focus:outline-none focus:border-[#2563eb] transition-colors';
+    'w-full px-4 py-2.5 border border-gray-200 bg-white text-sm text-gray-700 focus:outline-none focus:border-[#2563eb] transition-colors';
 
   return (
-    <main className="min-h-screen bg-[#0f0f0f]">
+    <main className="min-h-screen bg-white">
 
       {/* ── HERO / HEADER ── */}
-      <div className="bg-[#161616] border-b border-[#1a1a1a]">
+      <div className="bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 py-16 md:py-20 text-center">
           <div className="inline-flex items-center gap-2 mb-4">
             <span className="w-8 h-[1px] bg-[#2563eb]" />
             <span className="text-xs font-bold text-[#2563eb] uppercase tracking-[0.2em]">All Products</span>
             <span className="w-8 h-[1px] bg-[#2563eb]" />
           </div>
-          <h1 className="font-sora font-extrabold text-3xl md:text-5xl text-white mb-6">
+          <h1 className="font-sora font-extrabold text-3xl md:text-5xl text-gray-900 mb-6">
             Security & Surveillance Store
           </h1>
           <p className="text-gray-500 text-sm md:text-base max-w-xl mx-auto leading-relaxed mb-10">
@@ -97,7 +97,7 @@ export default function ShopPageClient({ products }: ShopPageClientProps) {
               placeholder="Search the collection..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-12 pr-12 py-4 bg-[#1a1a1a] border border-[#252525] text-sm text-white focus:outline-none focus:border-[#2563eb] transition-all placeholder:text-[#444]"
+              className="w-full pl-12 pr-12 py-4 bg-gray-100 border border-gray-200 text-sm text-gray-900 focus:outline-none focus:border-[#2563eb] transition-all placeholder:text-gray-400"
             />
             {searchTerm && (
               <button
@@ -130,8 +130,8 @@ export default function ShopPageClient({ products }: ShopPageClientProps) {
           <aside className={`lg:w-64 flex-shrink-0 ${showFilters ? 'block' : 'hidden lg:block'}`}>
             <div className="sticky top-28 space-y-8">
 
-              <div className="flex items-center justify-between border-b border-[#1a1a1a] pb-4">
-                <h2 className="text-[10px] font-bold text-white uppercase tracking-[0.2em]">Refine By</h2>
+              <div className="flex items-center justify-between border-b border-gray-100 pb-4">
+                <h2 className="text-[10px] font-bold text-gray-900 uppercase tracking-[0.2em]">Refine By</h2>
                 {hasActiveFilters && (
                   <button
                     onClick={clearFilters}
@@ -200,16 +200,16 @@ export default function ShopPageClient({ products }: ShopPageClientProps) {
 
               {/* Active Filters */}
               {hasActiveFilters && (
-                <div className="pt-6 border-t border-[#1a1a1a] space-y-3">
+                <div className="pt-6 border-t border-gray-100 space-y-3">
                   <p className="text-[10px] font-bold text-[#555] uppercase tracking-[0.2em]">Applied</p>
                   <div className="flex flex-wrap gap-2">
                     {searchTerm && (
-                      <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#161616] border border-[#252525] text-[10px] text-gray-400 uppercase tracking-wider">
+                      <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-white border border-gray-200 text-[10px] text-gray-400 uppercase tracking-wider">
                         &quot;{searchTerm}&quot; <X className="w-3 h-3 cursor-pointer hover:text-[#2563eb]" onClick={() => setSearchTerm('')} />
                       </span>
                     )}
                     {selectedCategory && (
-                      <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#161616] border border-[#252525] text-[10px] text-gray-400 uppercase tracking-wider">
+                      <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-white border border-gray-200 text-[10px] text-gray-400 uppercase tracking-wider">
                         {selectedCategory} <X className="w-3 h-3 cursor-pointer hover:text-[#2563eb]" onClick={() => setSelectedCategory('')} />
                       </span>
                     )}
@@ -222,22 +222,22 @@ export default function ShopPageClient({ products }: ShopPageClientProps) {
           {/* ── PRODUCTS ── */}
           <div className="flex-1">
             {/* Results bar */}
-            <div className="flex items-center justify-between mb-8 pb-4 border-b border-[#1a1a1a]">
+            <div className="flex items-center justify-between mb-8 pb-4 border-b border-gray-100">
               <p className="text-xs text-gray-600 tracking-widest uppercase">
-                Showing <span className="text-white font-bold">{filteredProducts.length}</span> results
+                Showing <span className="text-gray-900 font-bold">{filteredProducts.length}</span> results
               </p>
-              <div className="hidden sm:block h-[1px] flex-1 mx-8 bg-[#1a1a1a]" />
+              <div className="hidden sm:block h-[1px] flex-1 mx-8 bg-gray-100" />
               <p className="hidden sm:block text-[10px] text-[#444] uppercase tracking-[0.2em]">
                 {products.length} Items Total
               </p>
             </div>
 
             {filteredProducts.length === 0 ? (
-              <div className="text-center py-24 bg-[#161616] border border-[#252525]">
-                <div className="w-12 h-12 bg-[#1a1a1a] border border-[#252525] flex items-center justify-center mx-auto mb-6">
+              <div className="text-center py-24 bg-white border border-gray-200">
+                <div className="w-12 h-12 bg-gray-100 border border-gray-200 flex items-center justify-center mx-auto mb-6">
                   <Search className="w-5 h-5 text-[#444]" />
                 </div>
-                <h3 className="text-lg font-sora font-bold text-white mb-2">No matches found</h3>
+                <h3 className="text-lg font-sora font-bold text-gray-900 mb-2">No matches found</h3>
                 <p className="text-xs text-gray-600 mb-8">
                   Try adjusting your filters or search terms.
                 </p>
@@ -266,10 +266,10 @@ export default function ShopPageClient({ products }: ShopPageClientProps) {
       </div>
 
       {/* ── CONTACT SECTION ── */}
-      <div className="mt-20 bg-[#0a0a0a] border-t border-[#1a1a1a] py-20">
+      <div className="mt-20 bg-gray-50 border-t border-gray-100 py-20">
         <div className="max-w-4xl mx-auto text-center px-4">
           <p className="text-[#2563eb] text-[10px] font-bold uppercase tracking-[0.3em] mb-4">Customer Care</p>
-          <h2 className="font-sora font-bold text-2xl md:text-3xl text-white mb-6">Need assistance?</h2>
+          <h2 className="font-sora font-bold text-2xl md:text-3xl text-gray-900 mb-6">Need assistance?</h2>
           <p className="text-gray-500 text-sm mb-10 max-w-md mx-auto leading-relaxed">
             Our security specialists are available to help you choose the right surveillance system for your needs.
           </p>
@@ -284,7 +284,7 @@ export default function ShopPageClient({ products }: ShopPageClientProps) {
               href="https://wa.me/919911636888"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 border border-[#252525] hover:border-[#2563eb] text-gray-400 hover:text-white text-[11px] font-bold uppercase tracking-[0.2em] transition-all"
+              className="px-8 py-4 border border-gray-200 hover:border-[#2563eb] text-gray-400 hover:text-[#2563eb] text-[11px] font-bold uppercase tracking-[0.2em] transition-all"
             >
               WhatsApp Support
             </a>

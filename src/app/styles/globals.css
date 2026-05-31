@@ -5,9 +5,9 @@
 @import '@fontsource/fredoka/600.css';
 
 :root {
-  --background: #0f0f0f;
-  --foreground: #f0f0f0;
-  --accent: #e63e3e;
+  --background: #ffffff;
+  --foreground: #111111;
+  --accent: #2563eb;
 }
 
 @theme inline {
@@ -18,7 +18,7 @@
 }
 
 html {
-  background: #0f0f0f;
+  background: #ffffff;
 }
 
 body {
@@ -86,12 +86,12 @@ body {
 .animate-blob2 { animation: blob2 12s ease-in-out infinite; }
 .animate-blob3 { animation: blob3 14s ease-in-out infinite; }
 
-/* Dark scrollbar for the whole page */
+/* Light scrollbar */
 * {
-  scrollbar-color: #333 #111;
+  scrollbar-color: #cbd5e1 #f1f5f9;
   scrollbar-width: thin;
 }
 *::-webkit-scrollbar { width: 6px; height: 6px; }
-*::-webkit-scrollbar-track { background: #111; }
-*::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
-*::-webkit-scrollbar-thumb:hover { background: #e63e3e; }
+*::-webkit-scrollbar-track { background: #f1f5f9; }
+*::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+*::-webkit-scrollbar-thumb:hover { background: #2563eb; }

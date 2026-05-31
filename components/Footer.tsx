@@ -24,7 +24,7 @@ const helpLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0a0a0a] text-gray-500 border-t border-[#1a1a1a]">
+    <footer className="bg-gray-50 text-gray-500 border-t border-gray-200">
 
       {/* Main Grid */}
       <div className="max-w-7xl mx-auto px-4 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -33,24 +33,24 @@ export default function Footer() {
         <div className="flex flex-col gap-5">
           <Link href="/" className="flex items-center gap-2">
             <ShieldCheck className="w-6 h-6 text-[#2563eb]" />
-            <span className="font-sora font-extrabold text-xl tracking-tight text-white">
+            <span className="font-sora font-extrabold text-xl tracking-tight text-gray-900">
               Suraksha<span className="text-[#2563eb]">Market</span>
             </span>
           </Link>
-          <p className="text-[12px] leading-relaxed text-[#444]">
+          <p className="text-[12px] leading-relaxed text-gray-500">
             Delhi NCR&apos;s trusted destination for professional surveillance &amp; security solutions — CCTV cameras, video door phones, alarms, and more.
           </p>
           <div className="flex gap-4 mt-1">
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
-               className="text-[#333] hover:text-[#2563eb] transition-colors">
+            <a href="https://instagram.com/surakhshamarket" target="_blank" rel="noopener noreferrer"
+               className="text-gray-400 hover:text-[#2563eb] transition-colors">
               <Instagram className="w-4 h-4" />
             </a>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"
-               className="text-[#333] hover:text-[#2563eb] transition-colors">
+            <a href="https://youtube.com/@surakhshamarket" target="_blank" rel="noopener noreferrer"
+               className="text-gray-400 hover:text-[#2563eb] transition-colors">
               <Youtube className="w-4 h-4" />
             </a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"
-               className="text-[#333] hover:text-[#2563eb] transition-colors">
+            <a href="https://facebook.com/surakhshamarket" target="_blank" rel="noopener noreferrer"
+               className="text-gray-400 hover:text-[#2563eb] transition-colors">
               <Facebook className="w-4 h-4" />
             </a>
           </div>
@@ -58,13 +58,13 @@ export default function Footer() {
 
         {/* Product Categories */}
         <div>
-          <h4 className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white mb-5">
+          <h4 className="text-[10px] font-semibold uppercase tracking-[0.25em] text-gray-900 mb-5">
             Product Categories
           </h4>
           <ul className="flex flex-col gap-3">
             {shopCategories.map((cat) => (
               <li key={cat.to}>
-                <Link href={cat.to} className="text-[12px] text-[#444] hover:text-[#2563eb] transition-colors">
+                <Link href={cat.to} className="text-[12px] text-gray-500 hover:text-[#2563eb] transition-colors">
                   {cat.name}
                 </Link>
               </li>
@@ -74,13 +74,13 @@ export default function Footer() {
 
         {/* Help & Info */}
         <div>
-          <h4 className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white mb-5">
+          <h4 className="text-[10px] font-semibold uppercase tracking-[0.25em] text-gray-900 mb-5">
             Help & Info
           </h4>
           <ul className="flex flex-col gap-3">
             {helpLinks.map((link) => (
               <li key={link.to}>
-                <Link href={link.to} className="text-[12px] text-[#444] hover:text-[#2563eb] transition-colors">
+                <Link href={link.to} className="text-[12px] text-gray-500 hover:text-[#2563eb] transition-colors">
                   {link.name}
                 </Link>
               </li>
@@ -90,25 +90,25 @@ export default function Footer() {
 
         {/* Contact */}
         <div>
-          <h4 className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white mb-5">
+          <h4 className="text-[10px] font-semibold uppercase tracking-[0.25em] text-gray-900 mb-5">
             Contact Us
           </h4>
           <ul className="flex flex-col gap-4">
             <li>
               <a href="tel:+919911636888"
-                 className="flex items-start gap-3 text-[12px] text-[#444] hover:text-[#2563eb] transition-colors">
+                 className="flex items-start gap-3 text-[12px] text-gray-500 hover:text-[#2563eb] transition-colors">
                 <Phone className="w-4 h-4 mt-0.5 shrink-0" />
                 +91 99116 36888
               </a>
             </li>
             <li>
               <a href="mailto:support@surakhshamarket.com"
-                 className="flex items-start gap-3 text-[12px] text-[#444] hover:text-[#2563eb] transition-colors">
+                 className="flex items-start gap-3 text-[12px] text-gray-500 hover:text-[#2563eb] transition-colors">
                 <Mail className="w-4 h-4 mt-0.5 shrink-0" />
                 support@surakhshamarket.com
               </a>
             </li>
-            <li className="flex items-start gap-3 text-[12px] text-[#444]">
+            <li className="flex items-start gap-3 text-[12px] text-gray-500">
               <MapPin className="w-4 h-4 mt-0.5 shrink-0" />
               Delhi NCR, India
             </li>
@@ -117,17 +117,17 @@ export default function Footer() {
 
       </div>
 
-      <div className="border-t border-[#141414]" />
+      <div className="border-t border-gray-200" />
 
       {/* Bottom Bar */}
       <div className="max-w-7xl mx-auto px-4 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-        <p className="text-[11px] tracking-widest text-[#333]">
+        <p className="text-[11px] tracking-widest text-gray-400">
           © {new Date().getFullYear()} Suraksha Market. All rights reserved. Serving Delhi NCR.
         </p>
         <div className="flex items-center gap-3">
           {["Visa", "Mastercard", "UPI", "Razorpay"].map((method) => (
             <span key={method}
-              className="text-[10px] uppercase tracking-widest text-[#333] border border-[#1a1a1a] px-2 py-1">
+              className="text-[10px] uppercase tracking-widest text-gray-400 border border-gray-200 px-2 py-1">
               {method}
             </span>
           ))}

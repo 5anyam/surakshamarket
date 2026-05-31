@@ -9,20 +9,20 @@ import { ThemeProvider } from '../../components/ThemeProvider';
 import Loader from '../../components/Loader';
 
 export const metadata = {
-  title: 'Tap2Buy - Shop Everything You Love | Best Deals Online India',
-  description: 'Tap2Buy is your one-stop online shopping destination in India. Shop electronics, fashion, home essentials, beauty, sports, toys & more at the best prices. 100% authentic products with fast delivery.',
-  keywords: 'online shopping india, buy electronics online, fashion online india, home essentials, beauty products, sports equipment, tap2buy, best deals india, authentic products, fast delivery, tap2buy.in',
+  title: 'Suraksha Market - Professional Security & Surveillance Solutions | Delhi NCR',
+  description: 'Suraksha Market is Delhi NCR\'s trusted destination for professional CCTV cameras, video door phones, alarms, access control & complete surveillance systems. 100% genuine products with fast delivery.',
+  keywords: 'CCTV camera Delhi, video door phone, security camera, surveillance system, alarm system, access control Delhi NCR, smart lock, DVR NVR, outdoor camera, GPS tracker, surakhshamarket',
   openGraph: {
-    title: 'Tap2Buy - Shop Everything You Love',
-    description: 'Your trusted online shopping destination. Best prices on electronics, fashion, home essentials & more with 100% authentic products.',
-    url: 'https://tap2buy.in',
-    siteName: 'Tap2Buy',
+    title: 'Suraksha Market - Professional Security Solutions',
+    description: 'Delhi NCR\'s trusted source for CCTV cameras, video door phones, alarms & complete surveillance systems. Genuine products with expert support.',
+    url: 'https://surakhshamarket.com',
+    siteName: 'Suraksha Market',
     images: [
       {
         url: '/logo.png',
         width: 1200,
         height: 630,
-        alt: 'Tap2Buy - Shop Everything You Love',
+        alt: 'Suraksha Market - Professional Security Solutions',
       },
     ],
     locale: 'en_IN',
@@ -30,10 +30,10 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Tap2Buy - Shop Everything You Love',
-    description: 'Your trusted online shopping destination in India. Best prices, fast delivery, easy returns.',
+    title: 'Suraksha Market - Professional Security Solutions',
+    description: 'Delhi NCR\'s trusted source for professional security products. CCTV, alarms, access control & more.',
     images: ['/logo.png'],
-    creator: '@tap2buyin',
+    creator: '@surakhshamarket',
   },
   robots: {
     index: true,
@@ -42,17 +42,14 @@ export const metadata = {
       index: true,
     },
   },
-  verification: {
-    google: 'your-google-verification-code',
-  },
   alternates: {
-    canonical: 'https://tap2buy.in',
+    canonical: 'https://surakhshamarket.com',
   },
-  category: 'ecommerce',
-  classification: 'Online Shopping & Retail',
-  authors: [{ name: 'Tap2Buy' }],
-  creator: 'Tap2Buy',
-  publisher: 'Tap2Buy',
+  category: 'security',
+  classification: 'Security & Surveillance Products',
+  authors: [{ name: 'Suraksha Market' }],
+  creator: 'Suraksha Market',
+  publisher: 'Suraksha Market',
   formatDetection: {
     email: false,
     address: false,
@@ -77,8 +74,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
-        <meta name="theme-color" content="#FF6B00" />
-        <meta name="msapplication-TileColor" content="#1B2A4A" />
+        <meta name="theme-color" content="#2563eb" />
+        <meta name="msapplication-TileColor" content="#1e40af" />
 
         {/* Preload Critical Assets */}
         <link rel="preload" href="/logo.png" as="image" type="image/png" />
@@ -101,15 +98,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              "name": "Tap2Buy",
-              "description": "India's trusted online shopping destination offering electronics, fashion, home essentials, beauty, sports and more at best prices.",
-              "url": "https://tap2buy.in",
-              "logo": "https://tap2buy.in/logo.png",
+              "name": "Suraksha Market",
+              "description": "Delhi NCR's trusted destination for professional CCTV cameras, video door phones, alarms, access control and complete surveillance systems.",
+              "url": "https://surakhshamarket.com",
+              "logo": "https://surakhshamarket.com/logo.png",
               "foundingDate": "2024",
               "founders": [
                 {
                   "@type": "Person",
-                  "name": "Tap2Buy Founder"
+                  "name": "Suraksha Market Founder"
                 }
               ],
               "address": {
@@ -121,30 +118,30 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               },
               "contactPoint": {
                 "@type": "ContactPoint",
-                "telephone": "+91-XXXXXXXXXX",
+                "telephone": "+91-9911636888",
                 "contactType": "customer service",
-                "email": "support@tap2buy.in",
+                "email": "support@surakhshamarket.com",
                 "availableLanguage": ["English", "Hindi"]
               },
               "sameAs": [
-                "https://www.facebook.com/tap2buyin",
-                "https://www.instagram.com/tap2buyin",
-                "https://www.youtube.com/@tap2buyin"
+                "https://www.facebook.com/surakhshamarket",
+                "https://www.instagram.com/surakhshamarket",
+                "https://www.youtube.com/@surakhshamarket"
               ],
               "brand": {
                 "@type": "Brand",
-                "name": "Tap2Buy",
-                "logo": "https://tap2buy.in/logo.png",
-                "slogan": "Shop Everything You Love"
+                "name": "Suraksha Market",
+                "logo": "https://surakhshamarket.com/logo.png",
+                "slogan": "Your Security, Our Priority"
               },
               "makesOffer": {
                 "@type": "Offer",
                 "itemOffered": [
-                  { "@type": "Product", "name": "Electronics", "category": "Consumer Electronics", "brand": "Tap2Buy" },
-                  { "@type": "Product", "name": "Fashion", "category": "Clothing & Apparel", "brand": "Tap2Buy" },
-                  { "@type": "Product", "name": "Home & Living", "category": "Home Essentials", "brand": "Tap2Buy" },
-                  { "@type": "Product", "name": "Beauty & Personal Care", "category": "Beauty", "brand": "Tap2Buy" },
-                  { "@type": "Product", "name": "Sports & Fitness", "category": "Sports", "brand": "Tap2Buy" }
+                  { "@type": "Product", "name": "CCTV Cameras", "category": "Surveillance", "brand": "Suraksha Market" },
+                  { "@type": "Product", "name": "Video Door Phones", "category": "Security", "brand": "Suraksha Market" },
+                  { "@type": "Product", "name": "Alarms & Sensors", "category": "Security", "brand": "Suraksha Market" },
+                  { "@type": "Product", "name": "Access Control", "category": "Security", "brand": "Suraksha Market" },
+                  { "@type": "Product", "name": "Smart Locks", "category": "Security", "brand": "Suraksha Market" }
                 ]
               },
               "aggregateRating": {
@@ -165,13 +162,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              "name": "Tap2Buy",
-              "url": "https://tap2buy.in",
+              "name": "Suraksha Market",
+              "url": "https://surakhshamarket.com",
               "potentialAction": {
                 "@type": "SearchAction",
                 "target": {
                   "@type": "EntryPoint",
-                  "urlTemplate": "https://tap2buy.in/shop?search={search_term_string}"
+                  "urlTemplate": "https://surakhshamarket.com/search?q={search_term_string}"
                 },
                 "query-input": "required name=search_term_string"
               }
@@ -186,16 +183,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "ItemList",
-              "name": "Tap2Buy Product Categories",
+              "name": "Suraksha Market Product Categories",
               "itemListElement": [
-                { "@type": "ListItem", "position": 1, "name": "Electronics", "url": "https://tap2buy.in/shop?category=electronics" },
-                { "@type": "ListItem", "position": 2, "name": "Fashion", "url": "https://tap2buy.in/shop?category=fashion" },
-                { "@type": "ListItem", "position": 3, "name": "Home & Living", "url": "https://tap2buy.in/shop?category=home-living" },
-                { "@type": "ListItem", "position": 4, "name": "Beauty", "url": "https://tap2buy.in/shop?category=beauty" },
-                { "@type": "ListItem", "position": 5, "name": "Sports", "url": "https://tap2buy.in/shop?category=sports" },
-                { "@type": "ListItem", "position": 6, "name": "Books", "url": "https://tap2buy.in/shop?category=books" },
-                { "@type": "ListItem", "position": 7, "name": "Toys", "url": "https://tap2buy.in/shop?category=toys" },
-                { "@type": "ListItem", "position": 8, "name": "Grocery", "url": "https://tap2buy.in/shop?category=grocery" }
+                { "@type": "ListItem", "position": 1, "name": "CCTV Cameras", "url": "https://surakhshamarket.com/category/cctv-cameras" },
+                { "@type": "ListItem", "position": 2, "name": "Video Door Phones", "url": "https://surakhshamarket.com/category/video-door-phones" },
+                { "@type": "ListItem", "position": 3, "name": "Alarms & Sensors", "url": "https://surakhshamarket.com/category/alarms-sensors" },
+                { "@type": "ListItem", "position": 4, "name": "Access Control", "url": "https://surakhshamarket.com/category/access-control" },
+                { "@type": "ListItem", "position": 5, "name": "DVR/NVR Systems", "url": "https://surakhshamarket.com/category/dvr-nvr-systems" },
+                { "@type": "ListItem", "position": 6, "name": "Smart Locks", "url": "https://surakhshamarket.com/category/smart-locks" },
+                { "@type": "ListItem", "position": 7, "name": "Outdoor Cameras", "url": "https://surakhshamarket.com/category/outdoor-cameras" },
+                { "@type": "ListItem", "position": 8, "name": "GPS Trackers", "url": "https://surakhshamarket.com/category/gps-trackers" }
               ]
             })
           }}
@@ -209,9 +206,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@context": "https://schema.org",
               "@type": "BreadcrumbList",
               "itemListElement": [
-                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://tap2buy.in" },
-                { "@type": "ListItem", "position": 2, "name": "Shop", "item": "https://tap2buy.in/shop" },
-                { "@type": "ListItem", "position": 3, "name": "Collections", "item": "https://tap2buy.in/collections" }
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://surakhshamarket.com" },
+                { "@type": "ListItem", "position": 2, "name": "Collections", "item": "https://surakhshamarket.com/collections" },
+                { "@type": "ListItem", "position": 3, "name": "Deals", "item": "https://surakhshamarket.com/sale" }
               ]
             })
           }}
@@ -269,12 +266,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', '${gtagId}', {
-              page_title: 'Tap2Buy',
+              page_title: 'Suraksha Market',
               page_location: window.location.href,
               content_group1: 'Online Shopping',
               content_group2: 'Ecommerce India',
               custom_map: {
-                'dimension1': 'tap2buy',
+                'dimension1': 'surakhshamarket',
                 'dimension2': 'ecommerce'
               }
             });
@@ -285,7 +282,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               'items': [{
                 'item_name': 'Featured Products',
                 'item_category': 'All Categories',
-                'item_brand': 'Tap2Buy'
+                'item_brand': 'Suraksha Market'
               }]
             });
           `}
@@ -303,7 +300,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </Script>
       </head>
 
-      <body className="overflow-x-hidden overflow-y-scroll antialiased bg-[#0f0f0f] text-white">
+      <body className="overflow-x-hidden overflow-y-scroll antialiased bg-white text-gray-900">
         {/* GTM noscript */}
         <noscript>
           <iframe

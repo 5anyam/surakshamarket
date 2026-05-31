@@ -65,10 +65,12 @@ export interface Product {
   description?: string;
   short_description?: string;
   images?: WCImage[];
-  attributes?: ProductAttribute[];  // ⭐ FIXED: Changed from { option: string }[]
-  type?: 'simple' | 'variable' | 'grouped' | 'external';  // ⭐ ADDED
-  variations?: number[];  // ⭐ ADDED
+  attributes?: ProductAttribute[];
+  type?: 'simple' | 'variable' | 'grouped' | 'external';
+  variations?: number[];
   categories?: WCCategoryRef[];
+  average_rating?: string;
+  rating_count?: number;
 }
 
 export interface Category {
