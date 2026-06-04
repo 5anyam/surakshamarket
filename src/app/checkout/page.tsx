@@ -40,6 +40,12 @@ interface CheckoutFormData {
   notes: string;
 }
 
+interface GSTFormData {
+  gstNumber: string;
+  companyName: string;
+  companyAddress: string;
+}
+
 interface WooCommerceOrder {
   id: number;
   order_key: string;
@@ -197,6 +203,10 @@ export default function Checkout(): React.ReactElement {
     address: "", pincode: "", city: "", state: "", notes: "",
   });
 
+  const [wantsGST, setWantsGST] = useState(false);
+  const [gstForm, setGstForm] = useState<GSTFormData>({ gstNumber: "", companyName: "", companyAddress: "" });
+  const [gstErrors, setGstErrors] = useState<Partial<GSTFormData>>({});
+
   const subtotal = items.reduce((s, i) => s + parseFloat(i.price) * i.quantity, 0);
   const codCharges = paymentMethod === "cod" ? 100 : 0;
   const finalTotal = subtotal - couponDiscount + codCharges;
@@ -259,6 +269,13 @@ export default function Checkout(): React.ReactElement {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
   };
 
+  const onGSTChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setGstForm((f) => ({ ...f, [name]: value }));
+    if (gstErrors[name as keyof GSTFormData])
+      setGstErrors((prev) => ({ ...prev, [name]: undefined }));
+  };
+
   const copyPhoneToWhatsApp = () => {
     if (form.phone) {
       setForm((f) => ({ ...f, whatsapp: form.phone }));
@@ -280,7 +297,20 @@ export default function Checkout(): React.ReactElement {
     else if (!/^\d{6}$/.test(form.pincode)) e.pincode = "Enter a valid 6-digit pincode";
     if (!form.city.trim()) e.city = "City is required";
     if (!form.state.trim()) e.state = "State is required";
-    const valid = Object.keys(e).length === 0;
+
+    let gstValid = true;
+    if (wantsGST) {
+      const ge: Partial<GSTFormData> = {};
+      if (!gstForm.gstNumber.trim()) ge.gstNumber = "GST number is required";
+      else if (!/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/.test(gstForm.gstNumber.toUpperCase()))
+        ge.gstNumber = "Enter a valid 15-digit GST number";
+      if (!gstForm.companyName.trim()) ge.companyName = "Company name is required";
+      if (!gstForm.companyAddress.trim()) ge.companyAddress = "Company address is required";
+      setGstErrors(ge);
+      gstValid = Object.keys(ge).length === 0;
+    }
+
+    const valid = Object.keys(e).length === 0 && gstValid;
     if (valid) {
       const cartItems: CartItem[] = items.map((i) => ({
         id: i.id, name: i.name, price: parseFloat(i.price), quantity: i.quantity,
@@ -307,13 +337,18 @@ export default function Checkout(): React.ReactElement {
       shipping_lines: method === "cod" && codCharges > 0 ? [{ method_id: "cod", method_title: "COD Handling Charges", total: codCharges.toString() }] : [],
       fee_lines: feeLines,
       coupon_lines: [],
-      customer_note: [form.notes, `WhatsApp: ${form.whatsapp}`, `Full Address: ${fullAddress}`, appliedCoupon ? `Coupon: ${appliedCoupon} (₹${couponDiscount} off)` : ""].filter(Boolean).join("\n"),
+      customer_note: [form.notes, `WhatsApp: ${form.whatsapp}`, `Full Address: ${fullAddress}`, appliedCoupon ? `Coupon: ${appliedCoupon} (₹${couponDiscount} off)` : "", wantsGST ? `GST Bill Required\nGST: ${gstForm.gstNumber.toUpperCase()}\nCompany: ${gstForm.companyName}\nCompany Address: ${gstForm.companyAddress}` : ""].filter(Boolean).join("\n"),
       meta_data: [
         { key: "whatsapp_number", value: form.whatsapp },
         { key: "full_address", value: fullAddress },
         { key: "final_total", value: finalTotal.toString() },
         { key: "user_type", value: user ? "registered" : "guest" },
         ...(appliedCoupon ? [{ key: "coupon_code", value: appliedCoupon }, { key: "coupon_discount", value: couponDiscount.toString() }] : []),
+        ...(wantsGST ? [
+          { key: "gst_number", value: gstForm.gstNumber.toUpperCase() },
+          { key: "gst_company_name", value: gstForm.companyName },
+          { key: "gst_company_address", value: gstForm.companyAddress },
+        ] : []),
       ],
     };
   };
@@ -645,6 +680,64 @@ export default function Checkout(): React.ReactElement {
               <div>
                 <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Order Notes <span className="text-gray-400 font-normal normal-case">(optional)</span></label>
                 <textarea name="notes" rows={2} value={form.notes} onChange={onChange} className={`${inputClass()} resize-none`} placeholder="Special instructions..." />
+              </div>
+
+              {/* GST Billing */}
+              <div className="border-2 border-dashed border-gray-200 rounded-xl overflow-hidden">
+                <button
+                  type="button"
+                  onClick={() => { setWantsGST((v) => !v); setGstErrors({}); }}
+                  className="w-full flex items-center gap-3 px-4 py-3.5 bg-gray-50 hover:bg-gray-100 transition-colors text-left"
+                >
+                  <div className={`w-5 h-5 rounded border-2 flex items-center justify-center flex-shrink-0 transition-colors ${wantsGST ? "bg-[#2563eb] border-[#2563eb]" : "bg-white border-gray-300"}`}>
+                    {wantsGST && <CheckCircle className="w-3.5 h-3.5 text-white" />}
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-gray-800">I want a GST Invoice</p>
+                    <p className="text-xs text-gray-400">For business purchases — company GST bill required</p>
+                  </div>
+                </button>
+
+                {wantsGST && (
+                  <div className="p-4 space-y-3 bg-blue-50/40">
+                    <div>
+                      <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">GST Number <span className="text-[#2563eb]">*</span></label>
+                      <input
+                        name="gstNumber"
+                        value={gstForm.gstNumber}
+                        onChange={onGSTChange}
+                        className={inputClass(gstErrors.gstNumber)}
+                        placeholder="e.g. 22AAAAA0000A1Z5"
+                        maxLength={15}
+                        style={{ textTransform: "uppercase" }}
+                      />
+                      <FieldError msg={gstErrors.gstNumber} />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Company Name <span className="text-[#2563eb]">*</span></label>
+                      <input
+                        name="companyName"
+                        value={gstForm.companyName}
+                        onChange={onGSTChange}
+                        className={inputClass(gstErrors.companyName)}
+                        placeholder="Registered company name"
+                      />
+                      <FieldError msg={gstErrors.companyName} />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Company Address <span className="text-[#2563eb]">*</span></label>
+                      <textarea
+                        name="companyAddress"
+                        rows={2}
+                        value={gstForm.companyAddress}
+                        onChange={onGSTChange}
+                        className={`${inputClass(gstErrors.companyAddress)} resize-none`}
+                        placeholder="Registered company address"
+                      />
+                      <FieldError msg={gstErrors.companyAddress} />
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </SectionCard>
