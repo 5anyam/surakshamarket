@@ -8,7 +8,7 @@ import {
   MapPin, Video, Lock, Radio, Monitor, Wrench, Users,
 } from 'lucide-react';
 
-const WHATSAPP_NUMBER = '919911636888';
+const WHATSAPP_NUMBER = '918076781736';
 const WHATSAPP_MSG = encodeURIComponent('Namaste! Mujhe CCTV camera installation ki zaroorat hai. Kripya details batayein.');
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`;
 
@@ -182,11 +182,11 @@ export default function CCTVServicesPage() {
                   WhatsApp Par Puchein
                 </a>
                 <a
-                  href="tel:+919911636888"
+                  href="tel:+918076781736"
                   className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold px-6 py-3.5 rounded-xl transition-colors text-sm"
                 >
                   <Phone className="w-4 h-4" />
-                  Call: +91 99116 36888
+                  Call: +91 80767 81736
                 </a>
               </div>
             </div>
