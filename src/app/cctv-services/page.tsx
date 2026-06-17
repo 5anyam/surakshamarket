@@ -9,32 +9,32 @@ import {
 } from 'lucide-react';
 
 const WHATSAPP_NUMBER = '918076781736';
-const WHATSAPP_MSG = encodeURIComponent('Namaste! Mujhe CCTV camera installation ki zaroorat hai. Kripya details batayein.');
+const WHATSAPP_MSG = encodeURIComponent('Hello! I am interested in CCTV camera installation services. Please share more details.');
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`;
 
 const CAMERA_TYPES = [
   {
     icon: <Camera className="w-7 h-7" />,
     title: 'Dome Cameras',
-    desc: 'Indoor ceilings ke liye best. 360° coverage, vandal-proof design.',
+    desc: 'Best for indoor ceilings. 360° coverage with vandal-proof design.',
     badge: 'Most Popular',
   },
   {
     icon: <Video className="w-7 h-7" />,
     title: 'Bullet Cameras',
-    desc: 'Long-range outdoor surveillance. Rain & dust proof housing.',
+    desc: 'Long-range outdoor surveillance with rain & dust proof housing.',
     badge: null,
   },
   {
     icon: <Eye className="w-7 h-7" />,
     title: 'PTZ Cameras',
-    desc: 'Pan-Tilt-Zoom control. Wide area coverage with remote operation.',
+    desc: 'Pan-Tilt-Zoom control for wide area coverage with remote operation.',
     badge: 'Premium',
   },
   {
     icon: <Wifi className="w-7 h-7" />,
     title: 'IP / WiFi Cameras',
-    desc: 'Wire-free setup. Live view on phone, anywhere anytime.',
+    desc: 'Wire-free setup with live view on your phone, anywhere anytime.',
     badge: 'Smart',
   },
   {
@@ -46,7 +46,7 @@ const CAMERA_TYPES = [
   {
     icon: <Radio className="w-7 h-7" />,
     title: 'AI / Smart Cameras',
-    desc: 'Face detection, motion alerts, number plate reading.',
+    desc: 'Face detection, motion alerts & number plate recognition built-in.',
     badge: 'New',
   },
 ];
@@ -55,32 +55,32 @@ const SERVICES = [
   {
     icon: <Wrench className="w-6 h-6" />,
     title: 'Professional Installation',
-    desc: 'Certified technicians dwara clean wiring aur proper camera angle setup.',
+    desc: 'Clean wiring and proper camera angle setup by certified technicians.',
   },
   {
     icon: <Shield className="w-6 h-6" />,
     title: 'AMC & Maintenance',
-    desc: 'Annual Maintenance Contract — regular checkup, cleaning aur repair.',
+    desc: 'Annual Maintenance Contract covering regular checkups, cleaning and repairs.',
   },
   {
     icon: <Phone className="w-6 h-6" />,
     title: 'Remote Monitoring Setup',
-    desc: 'Aapke phone par live CCTV access setup karte hain.',
+    desc: 'We configure live CCTV access on your smartphone — iOS and Android.',
   },
   {
     icon: <Zap className="w-6 h-6" />,
     title: 'Same Day Service',
-    desc: 'Delhi NCR mein urgent installation available — call karein abhi.',
+    desc: 'Urgent installation available across Delhi NCR — call us right now.',
   },
   {
     icon: <Lock className="w-6 h-6" />,
     title: 'System Upgrade',
-    desc: 'Purane analog system ko HD / IP system mein upgrade karein.',
+    desc: 'Upgrade your old analog system to a modern HD / IP camera system.',
   },
   {
     icon: <Users className="w-6 h-6" />,
     title: 'Bulk / Society Orders',
-    desc: 'Housing society, office, factory ke liye special packages available.',
+    desc: 'Special packages available for housing societies, offices and factories.',
   },
 ];
 
@@ -93,28 +93,28 @@ const TRUST_POINTS = [
 
 const FAQS = [
   {
-    q: 'CCTV installation mein kitna time lagta hai?',
-    a: 'Ek ghar mein 4 cameras install karne mein typically 4–6 ghante lagte hain. Bada project hone par 1–2 din lag sakte hain.',
+    q: 'How long does CCTV installation take?',
+    a: 'A standard home with 4 cameras typically takes 4–6 hours. Larger projects such as offices or societies may take 1–2 days.',
   },
   {
-    q: 'Kya aap raat mein bhi recording kar sakte ho?',
-    a: 'Haan! Hamare saare cameras infrared (IR) night vision ke saath aate hain. 30 se 100 meter tak raat mein clear video milti hai.',
+    q: 'Do your cameras record at night?',
+    a: 'Yes! All our cameras come with infrared (IR) night vision. You get clear footage up to 30–100 metres even in complete darkness.',
   },
   {
-    q: 'Mobile par live CCTV kaise dekhein?',
-    a: 'Hum DVR/NVR ko aapke WiFi se connect karke mobile app setup karte hain. iPhone aur Android dono par kaam karta hai.',
+    q: 'How can I watch live CCTV footage on my phone?',
+    a: 'We connect the DVR/NVR to your WiFi and set up the mobile app for you. It works on both iPhone and Android devices.',
   },
   {
-    q: 'Kitne cameras ki zaroorat hai mere ghar ke liye?',
-    a: 'Ek standard 3BHK ke liye 4–6 cameras best hote hain — main door, back door, parking, living room. Free site survey ke liye WhatsApp karein.',
+    q: 'How many cameras do I need for my home?',
+    a: 'For a standard 3BHK we recommend 4–6 cameras covering the main door, back door, parking and living area. WhatsApp us for a free site survey.',
   },
   {
-    q: 'Kya aap AMC (Annual Maintenance Contract) dete ho?',
-    a: 'Haan, hum AMC provide karte hain jisme regular checkup, cleaning, software updates aur emergency repair sab included hain.',
+    q: 'Do you offer an AMC (Annual Maintenance Contract)?',
+    a: 'Yes, our AMC covers regular checkups, cleaning, software updates and emergency repair visits — all under one plan.',
   },
   {
-    q: 'Kya bina internet ke CCTV kaam karta hai?',
-    a: 'Haan! Local DVR/NVR system bina internet ke bhi kaam karta hai aur local network par recording hoti rehti hai.',
+    q: 'Does CCTV work without the internet?',
+    a: 'Absolutely. A local DVR/NVR system records continuously on its own storage without requiring any internet connection.',
   },
 ];
 
@@ -167,7 +167,7 @@ export default function CCTVServicesPage() {
                 Security Solutions
               </h1>
               <p className="text-gray-300 text-base leading-relaxed mb-8 max-w-lg">
-                Ghar ho ya daftar — hamare certified technicians aapke liye best CCTV setup design aur install karte hain. HD quality, night vision, mobile remote access sab included.
+                Home or office — our certified technicians design and install the best CCTV setup for you. HD quality, night vision and mobile remote access all included.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <a
@@ -179,7 +179,7 @@ export default function CCTVServicesPage() {
                   <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                   </svg>
-                  WhatsApp Par Puchein
+                  Chat on WhatsApp
                 </a>
                 <a
                   href="tel:+918076781736"
@@ -214,10 +214,10 @@ export default function CCTVServicesPage() {
             <span className="text-xs font-semibold text-[#2563eb] uppercase tracking-wider">Camera Range</span>
           </div>
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
-            Har Zaroorat Ke Liye Camera
+            A Camera for Every Need
           </h2>
           <p className="text-gray-500 text-sm max-w-xl mx-auto">
-            Hamare paas sabhi types ke CCTV cameras available hain — ghar, office, factory, shop sab ke liye.
+            We stock all types of CCTV cameras — for homes, offices, factories and shops.
           </p>
         </div>
 
@@ -251,10 +251,10 @@ export default function CCTVServicesPage() {
               <span className="text-xs font-semibold text-[#2563eb] uppercase tracking-wider">Our Services</span>
             </div>
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
-              Kya Kya Karte Hain Hum?
+              What We Do
             </h2>
             <p className="text-gray-500 text-sm max-w-xl mx-auto">
-              Sirf camera bechna nahi — complete security solution provide karna hai hamaara kaam.
+              We don&apos;t just sell cameras — we deliver complete, end-to-end security solutions.
             </p>
           </div>
 
@@ -283,19 +283,19 @@ export default function CCTVServicesPage() {
               <span className="text-xs font-semibold text-[#2563eb] uppercase tracking-wider">Why Choose Us</span>
             </div>
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-5 leading-tight">
-              Suraksha Market Kyun<br />Chunein?
+              Why Choose<br />Suraksha Market?
             </h2>
             <p className="text-gray-500 text-sm leading-relaxed mb-8">
-              Delhi NCR mein 5000 se zyada successful installations ke saath hum ek trusted naam hain. Hamare technicians certified hain aur sirf genuine branded products use karte hain.
+              With 5000+ successful installations across Delhi NCR, we are a name you can trust. Our technicians are certified and we use only genuine, branded products.
             </p>
             <div className="space-y-3">
               {[
-                'Hikvision, Dahua, CP Plus — Original Brands Only',
-                'Free Site Survey — Aane se pehle call karein',
-                'Installation ke baad 1 saal ki free service',
-                'Same day response — aaj call karo, kal kaam',
-                'Transparent pricing — koi hidden charges nahi',
-                '24×7 WhatsApp support available',
+                'Hikvision, Dahua, CP Plus — 100% Original Brands',
+                'Free Site Survey — No obligation, just call us',
+                '1 Year Free Service After Installation',
+                'Same Day Response — Call today, get it done tomorrow',
+                'Transparent Pricing — No hidden charges',
+                '24×7 WhatsApp Support Available',
               ].map((point, i) => (
                 <div key={i} className="flex items-start gap-3">
                   <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
@@ -326,15 +326,15 @@ export default function CCTVServicesPage() {
       <section className="bg-[#2563eb] py-16 lg:py-20 text-white">
         <div className="max-w-5xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-3">Kaise Kaam Karta Hai?</h2>
-            <p className="text-blue-200 text-sm max-w-md mx-auto">Sirf 4 simple steps mein aapka CCTV system ready</p>
+            <h2 className="text-3xl lg:text-4xl font-bold mb-3">How It Works</h2>
+            <p className="text-blue-200 text-sm max-w-md mx-auto">Your CCTV system ready in just 4 simple steps</p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { step: '01', title: 'WhatsApp Karein', desc: 'Apni requirement share karein — location, cameras count, budget.' },
-              { step: '02', title: 'Free Site Survey', desc: 'Hamare expert aayenge aur best placement suggest karenge.' },
-              { step: '03', title: 'Quotation Payen', desc: 'Transparent quote milega — koi hidden charges nahi.' },
-              { step: '04', title: 'Installation Done!', desc: 'Same day ya next day — professional installation complete.' },
+              { step: '01', title: 'WhatsApp Us', desc: 'Share your requirements — location, number of cameras, budget.' },
+              { step: '02', title: 'Free Site Survey', desc: 'Our expert visits and suggests the best camera placement.' },
+              { step: '03', title: 'Get a Quote', desc: 'Receive a transparent quote — no hidden charges, ever.' },
+              { step: '04', title: 'Installation Done!', desc: 'Same day or next day — professional installation complete.' },
             ].map((s, i) => (
               <div key={i} className="text-center">
                 <div className="w-12 h-12 rounded-2xl bg-white/20 border border-white/30 flex items-center justify-center text-lg font-bold mx-auto mb-4">
@@ -354,7 +354,7 @@ export default function CCTVServicesPage() {
           <div className="inline-flex items-center gap-2 bg-[#2563eb]/10 border border-[#2563eb]/20 rounded-full px-4 py-1.5 mb-4">
             <span className="text-xs font-semibold text-[#2563eb] uppercase tracking-wider">FAQ</span>
           </div>
-          <h2 className="text-3xl font-bold text-gray-900">Aksar Puchhe Jaane Wale Sawal</h2>
+          <h2 className="text-3xl font-bold text-gray-900">Frequently Asked Questions</h2>
         </div>
         <div className="space-y-3">
           {FAQS.map((faq, i) => (
@@ -367,10 +367,10 @@ export default function CCTVServicesPage() {
       <section className="bg-gray-900 py-16 text-white">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-            Aaj Hi Apna CCTV<br />System Lagwayein!
+            Get Your CCTV System<br />Installed Today!
           </h2>
           <p className="text-gray-400 text-sm mb-8 leading-relaxed">
-            Free site survey ke liye abhi WhatsApp karein. Hamare expert aapki security needs samjhenge aur best solution suggest karenge.
+            WhatsApp us now for a free site survey. Our experts will understand your security needs and recommend the best solution.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
@@ -382,13 +382,13 @@ export default function CCTVServicesPage() {
               <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
               </svg>
-              WhatsApp Par Message Karein
+              Message Us on WhatsApp
             </a>
             <Link
               href="/shop"
               className="inline-flex items-center justify-center gap-2 border border-white/30 hover:bg-white/10 text-white font-semibold px-8 py-4 rounded-xl transition-colors text-sm"
             >
-              CCTV Products Dekhein
+              Browse CCTV Products
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -400,13 +400,13 @@ export default function CCTVServicesPage() {
         href={WHATSAPP_URL}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="WhatsApp par contact karein"
+        aria-label="Contact us on WhatsApp"
         className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[#25D366] hover:bg-[#20b858] text-white font-semibold px-4 py-3 rounded-full shadow-2xl transition-all duration-200 hover:scale-105 group"
       >
         <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.815 0 00-3.48-8.413z" />
         </svg>
-        <span className="text-sm hidden sm:inline">CCTV Ke Liye WhatsApp Karein</span>
+        <span className="text-sm hidden sm:inline">WhatsApp for CCTV Services</span>
       </a>
 
     </div>
